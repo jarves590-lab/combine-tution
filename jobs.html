@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuition Job Board - CombinedTution</title>
+  <meta name="description"
+    content="Browse verified tuition jobs and private tutoring requests across Dhaka, Bangladesh. Filter by location radius, curriculum, salary, and subject." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="page-jobboard">
+
+  <!-- Site Loading Animation System -->
+  <div id="sitePreloader" class="site-preloader" aria-label="Loading CombinedTuition" role="status">
+    <div class="preloader-container">
+      <div class="preloader-logo-badge-wrap">
+        <div class="preloader-pulse-glow"></div>
+        <div class="preloader-orbit-ring preloader-orbit-ring-1"></div>
+        <div class="preloader-orbit-ring preloader-orbit-ring-2"></div>
+        <div class="preloader-logo-box">
+          <svg viewBox="0 0 32 32" class="preloader-shield-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 3L4 7.5V15C4 22.5 9.1 29.5 16 31C22.9 29.5 28 22.5 28 15V7.5L16 3Z"
+              fill="url(#preloaderShieldGradJobs)" />
+            <path d="M12 16L15 19L21 13" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <defs>
+              <linearGradient id="preloaderShieldGradJobs" x1="4" y1="3" x2="28" y2="31" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#8b5cf6" />
+                <stop offset="0.5" stop-color="#6c42f5" />
+                <stop offset="1" stop-color="#3b82f6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <h2 class="preloader-title">CombinedTution<span class="preloader-dot">.</span></h2>
+      <p class="preloader-subtitle">Tuition Jobs & Opportunities Stream</p>
+      <div class="preloader-progress-wrap">
+        <div class="preloader-progress-info">
+          <span>Loading</span>
+          <span class="preloader-progress-pct" id="preloaderPct">0%</span>
+        </div>
+        <div class="preloader-track">
+          <div class="preloader-bar" id="preloaderBar"></div>
+        </div>
+      </div>
+      <div class="preloader-status">
+        <span class="preloader-spinner-dot"></span>
+        <span id="preloaderStatusText">Connecting to academic network...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Sticky Navigation -->
+  <header class="header-container">
+    <nav class="navbar" id="navbar">
+      <!-- Far Left: Logo & Desktop Brand Text -->
+      <div class="nav-left">
+        <a href="index.html" class="brand-logo" title="Combined Tuition">
+          <img src="images/logo.jpeg" alt="Combined Tuition Logo" class="brand-logo-img" />
+          <span class="brand-text desktop-brand-text">CombinedTution<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+
+      <!-- Center: 'Combined Tuition' Text ONLY on Mobile Phone -->
+      <div class="nav-center mobile-only-brand">
+        <a href="index.html" class="brand-title-link" title="Combined Tuition">
+          <span class="brand-text">Combined Tuition<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <!-- Admin & Tutor Management Dropdown (Only dropdown visible when logged in as admin) -->
+        <div class="nav-dash-dropdown-wrap hidden" id="navDashDropdownWrap">
+          <button type="button" class="nav-dash-dropdown-btn" id="navDashDropdownBtn" aria-expanded="false"
+            onclick="window.toggleNavDashDropdown(event)">
+            <span class="btn-badge-admin"></span>
+            <i data-lucide="shield-check" style="width: 15px; height: 15px; color: #e11d48;"></i>
+            <span>Admin Panel</span>
+            <i data-lucide="chevron-down" class="chevron-icon"></i>
+          </button>
+          <div class="nav-dash-dropdown-menu" id="navDashDropdownMenu">
+            <div class="nav-dash-dropdown-header">Navigation Desks</div>
+            <a href="tutor-dashboard.html" class="nav-dash-item tutor-item" id="dropdownTutorDeskLink">
+              <div class="nav-dash-icon tutor-icon">
+                <i data-lucide="layout-dashboard"></i>
+              </div>
+              <div class="nav-dash-details">
+                <span class="nav-dash-title">Tutor Desk</span>
+                <span class="nav-dash-subtitle">Requests & schedules</span>
+              </div>
+            </a>
+            <a href="admin-dashboard.html" class="nav-dash-item admin-item" id="dropdownAdminHubLink">
+              <div class="nav-dash-icon admin-icon">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <div class="nav-dash-details">
+                <span class="nav-dash-title">Admin Hub</span>
+                <span class="nav-dash-subtitle">Platform governance</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Standalone Tutor Desk Button (visible only when logged in as Tutor) -->
+        <a href="tutor-dashboard.html" class="btn btn-secondary hidden" id="navTutorDashBtn"
+          style="border-color: #7c3aed; color: #7c3aed; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: 9999px;">
+          <i data-lucide="layout-dashboard" class="btn-icon"></i>
+          <span>Tutor Desk</span>
+        </a>
+        <a href="admin-dashboard.html" class="btn btn-secondary hidden" id="navAdminDashBtn"
+          style="border-color: #f43f5e; color: #e11d48; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: 9999px;">
+          <i data-lucide="shield-check" class="btn-icon"></i>
+          <span>Admin Hub</span>
+        </a>
+
+        <a href="login.html" class="btn btn-primary" id="openLoginModalBtn">
+          <i data-lucide="log-in" class="btn-icon"></i>
+          <span>Login</span>
+        </a>
+        <button class="menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+          <i data-lucide="menu" id="menuOpenIcon"></i>
+          <i data-lucide="x" id="menuCloseIcon" class="hidden"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-links">
+        <a href="jobs.html" class="mobile-nav-item highlight">Job Board</a>
+        <a href="why-combined.html" class="mobile-nav-item">Why Combined</a>
+        <a href="how-it-works.html" class="mobile-nav-item">How It Works</a>
+        <a href="become-a-tutor.html" class="mobile-nav-item">Become a Tutor</a>
+        <a href="tutor-dashboard.html" class="mobile-nav-item" id="mobileTutorDashBtn"
+          style="color: #7c3aed !important; font-weight: 800; display: flex; align-items: center; gap: 0.55rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="7" height="9" x="3" y="3" rx="1" />
+            <rect width="7" height="5" x="14" y="3" rx="1" />
+            <rect width="7" height="9" x="14" y="12" rx="1" />
+            <rect width="7" height="5" x="3" y="16" rx="1" />
+          </svg>
+          <span>TUTOR DESK</span>
+        </a>
+        <a href="admin-dashboard.html" class="mobile-nav-item" id="mobileAdminDashBtn"
+          style="color: #e11d48 !important; font-weight: 800; display: flex; align-items: center; gap: 0.55rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+          <span>ADMIN HUB</span>
+        </a>
+        <div class="mobile-drawer-btn">
+          <a href="login.html" class="btn btn-primary w-full mobile-login-btn" id="mobileLoginBtn"
+            style="text-align: center; text-decoration: none;">LOGIN</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Job Board Content Section -->
+  <section class="section-jobboard-standalone">
+    <div class="container">
+      <!-- Quick Area Chips Bar -->
+      <div class="location-chips-bar">
+        <span class="chips-label"><i data-lucide="map-pin"></i> Popular Areas:</span>
+        <div class="chips-list">
+          <button class="chip-btn active" data-area="all">All Dhaka</button>
+          <button class="chip-btn" data-area="Dhanmondi">Dhanmondi</button>
+          <button class="chip-btn" data-area="Gulshan">Gulshan / Banani</button>
+          <button class="chip-btn" data-area="Uttara">Uttara</button>
+          <button class="chip-btn" data-area="Mirpur">Mirpur</button>
+          <button class="chip-btn" data-area="Bashundhara">Bashundhara R/A</button>
+          <button class="chip-btn" data-area="Mohammadpur">Mohammadpur</button>
+          <button class="chip-btn" data-area="Lalmatia">Lalmatia</button>
+        </div>
+      </div>
+
+      <!-- Live Search & Radius Distance Bar -->
+      <div class="job-search-bar">
+        <div class="search-input-group">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="jobSearchInput" placeholder="" />
+          <button class="clear-search-btn hidden" id="clearJobSearchBtn"><i data-lucide="x"></i></button>
+        </div>
+
+        <div class="search-radius-group">
+          <i data-lucide="compass" class="search-icon"></i>
+          <label for="distanceRadiusSelect">Distance:</label>
+          <select id="distanceRadiusSelect">
+            <option value="1">Within 1 km</option>
+            <option value="3" selected>Within 3 km</option>
+            <option value="5">Within 5 km</option>
+            <option value="10">Within 10 km</option>
+            <option value="15">Within 15 km</option>
+            <option value="all">Any Distance</option>
+          </select>
+        </div>
+
+        <div class="search-sort-group">
+          <i data-lucide="arrow-up-down" class="search-icon"></i>
+          <label for="jobSortSelect">Sort:</label>
+          <select id="jobSortSelect">
+            <option value="newest">Latest Posted</option>
+            <option value="salary-high">Highest Salary</option>
+            <option value="nearest">Nearest to You</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dual Column Layout: Sidebar Filters + Job Stream -->
+      <div class="jobboard-layout">
+        <!-- Sticky Sidebar Filter Panel -->
+        <aside class="job-sidebar">
+          <div class="sidebar-box">
+            <!-- Feed Selector Switcher Bar (Small Rectangular Shape inside Filter Sidebar) -->
+            <div class="job-feed-tabs-bar" id="jobFeedTabsBar">
+              <button class="feed-tab-btn active" id="feedTabTuitions" onclick="window.switchJobBoardFeed('tuitions')">
+                <div class="feed-tab-left">
+                  <i data-lucide="briefcase"></i>
+                  <span>Tuition Jobs Feed</span>
+                </div>
+                <span class="feed-tab-badge" id="tuitionsCountBadge">0</span>
+              </button>
+              <button class="feed-tab-btn" id="feedTabTutors" onclick="window.switchJobBoardFeed('tutors')">
+                <div class="feed-tab-left">
+                  <i data-lucide="graduation-cap"></i>
+                  <span>Verified Tutors</span>
+                </div>
+                <span class="feed-tab-badge" id="tutorsCountBadge">0</span>
+              </button>
+            </div>
+
+            <div class="sidebar-header">
+              <h3><i data-lucide="sliders" class="sidebar-icon"></i> Filter Results</h3>
+              <button class="btn-reset-filters" id="jobResetFiltersBtn">Clear All</button>
+            </div>
+
+            <!-- Job Type -->
+            <div class="sidebar-group">
+              <label class="filter-heading">Job Type</label>
+              <div class="filter-radio-list">
+                <label class="radio-label">
+                  <input type="radio" name="filterJobType" value="all" checked />
+                  <span>All Job Types</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="filterJobType" value="Home Tuition" />
+                  <span>Home Tuition</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="filterJobType" value="Online" />
+                  <span>Online Tuition</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="filterJobType" value="Institutional" />
+                  <span>Institutional</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Curriculum / Medium -->
+            <div class="sidebar-group">
+              <label class="filter-heading" for="filterMediumSelect">Curriculum / Medium</label>
+              <select id="filterMediumSelect" class="sidebar-select">
+                <option value="all">All Mediums</option>
+                <option value="Bangla Medium">Bangla Medium</option>
+                <option value="English Version">English Version (National)</option>
+                <option value="English Medium">English Medium (Cambridge / Edexcel)</option>
+                <option value="Madrasa">Madrasa / Religious</option>
+              </select>
+            </div>
+
+            <!-- Class & Grade -->
+            <div class="sidebar-group">
+              <label class="filter-heading" for="filterClassSelect">Class & Grade</label>
+              <select id="filterClassSelect" class="sidebar-select">
+                <option value="all">All Classes</option>
+                <option value="Class 1-5">Class 1 - 5 (Primary)</option>
+                <option value="Class 6-8">Class 6 - 8 (Junior)</option>
+                <option value="Class 9-10">Class 9 - 10 / SSC</option>
+                <option value="HSC">Class 11 - 12 / HSC</option>
+                <option value="O Level">O Level (Cambridge/Edexcel)</option>
+                <option value="A Level">A Level (Cambridge/Edexcel)</option>
+                <option value="Admission">University Admission</option>
+              </select>
+            </div>
+
+            <!-- Tutor Gender Preference -->
+            <div class="sidebar-group">
+              <label class="filter-heading" for="filterGenderSelect">Tutor Gender Preference</label>
+              <select id="filterGenderSelect" class="sidebar-select">
+                <option value="all">Any Gender</option>
+                <option value="Male Tutor Preferred">Male Preferred</option>
+                <option value="Female Tutor Preferred">Female Preferred</option>
+              </select>
+            </div>
+
+            <!-- Monthly Remuneration Chips -->
+            <div class="sidebar-group">
+              <label class="filter-heading">Monthly Remuneration</label>
+              <div class="filter-salary-tags" id="salaryFilterTags">
+                <button class="salary-chip active" data-salary="all">All</button>
+                <button class="salary-chip" data-salary="under-6000">Up to ৳6k</button>
+                <button class="salary-chip" data-salary="6000-9000">৳6k - ৳9k</button>
+                <button class="salary-chip" data-salary="9000-12000">৳9k - ৳12k</button>
+                <button class="salary-chip" data-salary="12000-plus">৳12k+</button>
+              </div>
+            </div>
+
+            <!-- Instant Alerts Promo Box -->
+            <div class="sidebar-promo">
+              <div class="promo-icon"><i data-lucide="bell"></i></div>
+              <h4>Instant Tuition Alerts</h4>
+              <p>Receive WhatsApp and SMS notifications when a new matching tuition is posted nearby.</p>
+              <button class="btn btn-dark w-full btn-sm" id="subscribeAlertsBtn">
+                <i data-lucide="bell-ring" class="btn-icon"></i>
+                <span>Get Instant Alerts</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Main Feed -->
+        <main class="job-feed-area">
+          <div class="feed-status-bar">
+            <div class="status-left">
+              <span class="active-dot"></span>
+              <span class="feed-count-text" id="jobResultsCount">Loading live tuition jobs...</span>
+            </div>
+            <div class="status-location-badge" id="currentLocationBadge">
+              <i data-lucide="map-pin"></i>
+              <span>Location: Dhaka Central (Lat: 23.7278, Lng: 90.4135)</span>
+            </div>
+          </div>
+
+          <!-- Live Job Listings Stream Container (Tuitions Feed) -->
+          <div class="job-cards-stream" id="jobCardsStream">
+            <!-- Dynamically populated via JS -->
+          </div>
+
+          <!-- Live Tutor Candidates Stream Container (Tutors Feed) -->
+          <div class="tutors-feed-grid hidden" id="tutorCardsStream">
+            <!-- Dynamically populated via JS -->
+          </div>
+
+          <!-- Job Board 6-Item Pagination Bar Component -->
+          <div class="job-pagination-wrap" id="jobBoardPagination">
+            <!-- Dynamically populated via JS -->
+          </div>
+
+          <!-- Post Tuition Banner at bottom of jobs -->
+          <div class="post-job-callout">
+            <div class="callout-left">
+              <h3>Are you a Parent looking for a private tutor?</h3>
+              <p>Post your requirements in 2 minutes. Our academic coordinator will match verified tutors with you.</p>
+            </div>
+            <button class="btn btn-primary btn-lg" id="bottomPostTuitionBtn">
+              <span>Post a Tuition Request</span>
+              <i data-lucide="arrow-right" class="btn-icon"></i>
+            </button>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo footer-logo">
+            <div class="logo-icon">
+              <i data-lucide="graduation-cap"></i>
+            </div>
+            <span class="brand-text">CombinedTution<span class="brand-dot">.</span></span>
+          </a>
+          <p class="footer-desc">
+            CombinedTution is Bangladesh's leading platform connecting students with qualified verified tutors.
+            Build your future with the right academic guidance.
+          </p>
+          <div class="footer-socials">
+            <a href="https://wa.me/8801885999922" class="social-btn whatsapp" aria-label="WhatsApp" target="_blank"
+              rel="noopener noreferrer" title="Chat on WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.66 20.16 9.3 19.8 8.1 19.09L7.81 18.92L4.69 19.74L5.52 16.7L5.33 16.39C4.54 15.14 4.12 13.55 4.12 11.91C4.12 7.38 7.82 3.67 12.04 3.67ZM8.83 7.37C8.64 7.37 8.44 7.37 8.27 7.38C8.06 7.39 7.82 7.47 7.64 7.66C7.42 7.9 6.81 8.47 6.81 9.63C6.81 10.79 7.66 11.9 7.78 12.06C7.9 12.22 9.42 14.57 11.75 15.57C13.68 16.41 14.07 16.24 14.49 16.2C14.99 16.15 16.1 15.54 16.33 14.89C16.56 14.24 16.56 13.69 16.49 13.57C16.42 13.45 16.26 13.38 16.02 13.26C15.78 13.14 14.6 12.56 14.38 12.48C14.16 12.4 14 12.36 13.84 12.6C13.64 12.9 13.09 13.57 12.92 13.76C12.76 13.94 12.6 13.97 12.36 13.85C12.12 13.73 11.35 13.48 10.43 12.66C9.72 12.03 9.24 11.25 9.1 11.01C8.96 10.77 9.09 10.64 9.21 10.52C9.32 10.41 9.45 10.24 9.57 10.1C9.69 9.96 9.73 9.86 9.81 9.7C9.89 9.54 9.85 9.4 9.79 9.28C9.73 9.16 9.23 7.95 9.03 7.45C8.83 6.97 8.63 7.03 8.48 7.03C8.33 7.03 8.16 7.03 8.01 7.03L8.83 7.37Z" />
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/share/1JfQaG5Y4a/" class="social-btn facebook" aria-label="Facebook"
+              target="_blank" rel="noopener noreferrer" title="Follow on Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="https://x.com" class="social-btn x-twitter" aria-label="X (formerly Twitter)" target="_blank"
+              rel="noopener noreferrer" title="Follow on X">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-nav-columns">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Platform</h4>
+            <ul class="footer-links">
+              <li><a href="how-it-works.html">How It Works</a></li>
+              <li><a href="why-combined.html">Why Combined</a></li>
+              <li><a href="index.html#tutors-section">Find a Tutor</a></li>
+              <li><a href="jobs.html">Tuition Job Board</a></li>
+              <li><a href="become-a-tutor.html">Become a Tutor</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="contact-coordinator.html">Contact Coordinator</a></li>
+              <li><a href="how-it-works.html#faq">Frequently Asked Questions</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Account</h4>
+            <ul class="footer-links">
+              <li><a href="#" class="open-login-link">Login</a></li>
+              <li><a href="#" class="open-login-link">Register Account</a></li>
+              <li><a href="become-a-tutor.html">Become a Tutor</a></li>
+              <li><a href="#" class="open-login-link">Student / Parent Portal</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-contact-bar">
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+          <div>
+            <h5>Address</h5>
+            <p>House 42, Road 11, Dhanmondi, Dhaka, Bangladesh</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="phone"></i></div>
+          <div>
+            <h5>Phone</h5>
+            <p>+88 01711 032847</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"
+            style="background: rgba(37, 211, 102, 0.12); color: #25D366; border-color: rgba(37, 211, 102, 0.3);">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path
+                d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.66 20.16 9.3 19.8 8.1 19.09L7.81 18.92L4.69 19.74L5.52 16.7L5.33 16.39C4.54 15.14 4.12 13.55 4.12 11.91C4.12 7.38 7.82 3.67 12.04 3.67ZM8.83 7.37C8.64 7.37 8.44 7.37 8.27 7.38C8.06 7.39 7.82 7.47 7.64 7.66C7.42 7.9 6.81 8.47 6.81 9.63C6.81 10.79 7.66 11.9 7.78 12.06C7.9 12.22 9.42 14.57 11.75 15.57C13.68 16.41 14.07 16.24 14.49 16.2C14.99 16.15 16.1 15.54 16.33 14.89C16.56 14.24 16.56 13.69 16.49 13.57C16.42 13.45 16.26 13.38 16.02 13.26C15.78 13.14 14.6 12.56 14.38 12.48C14.16 12.4 14 12.36 13.84 12.6C13.64 12.9 13.09 13.57 12.92 13.76C12.76 13.94 12.6 13.97 12.36 13.85C12.12 13.73 11.35 13.48 10.43 12.66C9.72 12.03 9.24 11.25 9.1 11.01C8.96 10.77 9.09 10.64 9.21 10.52C9.32 10.41 9.45 10.24 9.57 10.1C9.69 9.96 9.73 9.86 9.81 9.7C9.89 9.54 9.85 9.4 9.79 9.28C9.73 9.16 9.23 7.95 9.03 7.45C8.83 6.97 8.63 7.03 8.48 7.03C8.33 7.03 8.16 7.03 8.01 7.03L8.83 7.37Z" />
+            </svg>
+          </div>
+          <div>
+            <h5>WhatsApp</h5>
+            <p><a href="https://wa.me/8801885999922" target="_blank" rel="noopener noreferrer"
+                style="color: inherit; text-decoration: none; font-weight: 600;">+880 1885999922</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="mail"></i></div>
+          <div>
+            <h5>Email</h5>
+            <p>info@combinetution.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright-text">© <span id="currentYear">2026</span> CombinedTution. All Rights Reserved.</p>
+        <div class="legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="contact-coordinator.html">Contact Coordinator</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Complete Tuition Job Details Modal -->
+  <div class="modal-overlay hidden" id="jobDetailModal">
+    <div class="modal-backdrop" id="jobDetailBackdrop"></div>
+    <div class="modal-container job-modal-container">
+      <div class="modal-header">
+        <div>
+          <span class="job-id-badge" id="modalJobId">TJ-8921</span>
+          <h3 class="modal-title" id="modalJobTitle">Tuition Job Details</h3>
+        </div>
+        <button class="modal-close-btn" id="jobDetailCloseBtn" aria-label="Close modal"><i data-lucide="x"></i></button>
+      </div>
+      <div class="job-detail-body" id="jobDetailBody">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-Step Tutor Request / Application Modal -->
+  <div class="modal-overlay hidden" id="tutorRequestModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="tutorModalTitle">Submit Application / Request</h3>
+          <p class="modal-subtitle">Let us know what you need in simple steps</p>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- Step Indicator -->
+      <div class="step-indicator" id="stepIndicator">
+        <div class="step-pill active" id="stepPill1">
+          <span class="step-num">1</span>
+          <span class="step-name">Contact Info</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-pill" id="stepPill2">
+          <span class="step-num">2</span>
+          <span class="step-name">Details</span>
+        </div>
+      </div>
+
+      <!-- Step 1 Form -->
+      <form class="modal-form" id="step1Form">
+        <div class="form-group">
+          <label for="phoneInput" class="form-label">
+            Please provide us your phone number <span class="required-star">*</span>
+          </label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i data-lucide="phone"></i></span>
+            <input type="tel" id="phoneInput" class="form-input" placeholder="" required />
+          </div>
+          <p class="input-helper">We need this to verify your application and notify you of status updates.</p>
+          <p class="input-error hidden" id="phoneError">Please provide a valid 11-digit phone number.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full btn-lg">
+          <span>Continue</span>
+          <i data-lucide="arrow-right" class="btn-icon"></i>
+        </button>
+      </form>
+
+      <!-- Step 2 Form -->
+      <form class="modal-form hidden" id="step2Form">
+        <div class="form-group">
+          <label for="nameInput" class="form-label">YOUR FULL NAME <span class="required-star">*</span></label>
+          <input type="text" id="nameInput" class="form-input" placeholder="" required />
+          <p class="input-error hidden" id="nameError">Name is required</p>
+        </div>
+
+        <div class="form-group">
+          <label for="modalLocationInput" class="form-label">LOCATION & AREA <span
+              class="required-star">*</span></label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i data-lucide="map-pin"></i></span>
+            <input type="text" id="modalLocationInput" class="form-input" placeholder="" required />
+          </div>
+          <p class="input-error hidden" id="locationError">Location is required</p>
+        </div>
+
+        <div class="form-group">
+          <label for="requirementInput" class="form-label">YOUR REQUIREMENT / NOTE <span
+              class="required-star">*</span></label>
+          <textarea id="requirementInput" class="form-textarea" rows="3" placeholder="" required></textarea>
+          <p class="input-error hidden" id="requirementError">Details required</p>
+        </div>
+
+        <div class="modal-form-actions">
+          <button type="button" class="btn btn-secondary" id="step2BackBtn">
+            <i data-lucide="arrow-left" class="btn-icon"></i>
+            <span>Back</span>
+          </button>
+          <button type="submit" class="btn btn-primary flex-1" id="step2SubmitBtn">
+            <span>Submit</span>
+            <i data-lucide="check" class="btn-icon"></i>
+          </button>
+        </div>
+      </form>
+
+      <!-- Step 3: Success Screen -->
+      <div class="modal-success hidden" id="modalSuccessScreen">
+        <div class="success-icon-badge">
+          <i data-lucide="check"></i>
+        </div>
+        <h3 class="success-title">Submission Received!</h3>
+        <p class="success-msg">
+          Thank you, <span class="font-bold text-slate-800" id="successName">Candidate</span>!
+          Your information has been received and our coordinator has been notified.
+        </p>
+        <p class="success-sub">
+          We will get in touch with you at <span class="font-bold text-slate-800" id="successPhone">017XXXXXXXX</span>
+          shortly.
+        </p>
+        <button class="btn btn-dark w-full mt-6" id="successCloseBtn">Close Window</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+
+</html>

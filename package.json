@@ -1,0 +1,26 @@
+{
+  "name": "tutoriaa-website",
+  "version": "1.0.0",
+  "description": "Tutoriaa clone - Verified Tutors & Tuition Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "tutoriaa",
+    "tutor",
+    "tuition",
+    "bangladesh"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "google-auth-library": "^11.0.2",
+    "nodemailer": "^10.0.10"
+  }
+}

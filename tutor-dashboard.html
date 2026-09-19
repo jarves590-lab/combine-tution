@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutor Desk - Manage Booking Requests | CombinedTution</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .dash-container {
+      max-width: 1240px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .dash-title h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .dash-title p {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+
+    .dash-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.25rem;
+    }
+
+    .stat-icon.purple {
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+    }
+
+    .stat-icon.amber {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    }
+
+    .stat-icon.emerald {
+      background: linear-gradient(135deg, #10b981, #34d399);
+    }
+
+    .stat-icon.blue {
+      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    }
+
+    .stat-info h3 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+
+    .stat-info span {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .dash-section {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: #f1f5f9;
+      padding: 0.35rem;
+      border-radius: 12px;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: #7c3aed;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .requests-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .requests-table th {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .requests-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+      font-size: 0.925rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-badge.pending {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .status-badge.accepted {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status-badge.rejected {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .action-btn-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-action {
+      border: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-action.accept {
+      background: #10b981;
+      color: #ffffff;
+    }
+
+    .btn-action.accept:hover {
+      background: #059669;
+    }
+
+    .btn-action.reject {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .btn-action.reject:hover {
+      background: #fca5a5;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #94a3b8;
+    }
+
+    .empty-state i {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="header-container">
+    <nav class="navbar" id="navbar">
+      <!-- Far Left: Logo -->
+      <div class="nav-left">
+        <a href="index.html" class="brand-logo" title="Combined Tuition">
+          <img src="images/logo.jpeg" alt="Combined Tuition Logo" class="brand-logo-img" />
+        </a>
+      </div>
+
+      <!-- Center: 'Combined Tuition' Text -->
+      <div class="nav-center">
+        <a href="index.html" class="brand-title-link" title="Combined Tuition">
+          <span class="brand-text">Combined Tuition<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <!-- Admin & Tutor Management Dropdown (Visible for Admin) -->
+        <div class="nav-dash-dropdown-wrap hidden" id="navDashDropdownWrap">
+          <button type="button" class="nav-dash-dropdown-btn" id="navDashDropdownBtn" aria-expanded="false"
+            onclick="window.toggleNavDashDropdown(event)">
+            <span class="btn-badge-admin"></span>
+            <i data-lucide="shield-check" style="width: 15px; height: 15px; color: #e11d48;"></i>
+            <span>Admin Panel</span>
+            <i data-lucide="chevron-down" class="chevron-icon"></i>
+          </button>
+          <div class="nav-dash-dropdown-menu" id="navDashDropdownMenu">
+            <div class="nav-dash-dropdown-header">Navigation Desks</div>
+            <a href="tutor-dashboard.html" class="nav-dash-item tutor-item" id="dropdownTutorDeskLink"
+              style="background: rgba(124, 58, 237, 0.06);">
+              <div class="nav-dash-icon tutor-icon">
+                <i data-lucide="layout-dashboard"></i>
+              </div>
+              <div class="nav-dash-details">
+                <span class="nav-dash-title" style="color: #7c3aed;">Tutor Desk (Active)</span>
+                <span class="nav-dash-subtitle">Requests & schedules</span>
+              </div>
+            </a>
+            <a href="admin-dashboard.html" class="nav-dash-item admin-item" id="dropdownAdminHubLink">
+              <div class="nav-dash-icon admin-icon">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <div class="nav-dash-details">
+                <span class="nav-dash-title">Admin Hub</span>
+                <span class="nav-dash-subtitle">Platform governance</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="index.html" class="btn btn-secondary"
+          style="border-radius: 9999px; padding: 0.5rem 1rem; font-size: 0.85rem;">
+          <i data-lucide="arrow-left"></i> Main Site
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Tutor Dashboard View -->
+  <main class="dash-container">
+    <div class="dash-header">
+      <div class="dash-title">
+        <h1>Tutor Desk & Request Center</h1>
+        <p>Manage incoming student & guardian tuition requests, track acceptance status, and schedules.</p>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn-primary" id="tutorDeskStandaloneAddTutorBtn" onclick="openAdminAddTutorModal()"
+          style="border-radius: 9999px; font-size: 0.85rem; padding: 0.55rem 1.25rem; background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%); color: #ffffff; display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; border: none; cursor: pointer;">
+          <i data-lucide="user-plus" style="width: 16px; height: 16px;"></i> + Add New Verified Tutor
+        </button>
+        <button class="btn btn-secondary" onclick="loadTutorData()"
+          style="border-radius: 9999px; font-size: 0.85rem; padding: 0.55rem 1.25rem; display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+          <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i> Refresh Requests
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats & Analytics Grid -->
+    <div class="dash-stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon purple"><i data-lucide="inbox"></i></div>
+        <div class="stat-info">
+          <h3 id="statTotalRequests">0</h3>
+          <span>Total Inquiries</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon amber"><i data-lucide="clock"></i></div>
+        <div class="stat-info">
+          <h3 id="statPendingRequests">0</h3>
+          <span>Pending Decisions</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon emerald"><i data-lucide="check-circle-2"></i></div>
+        <div class="stat-info">
+          <h3 id="statAcceptedRequests">0</h3>
+          <span>Accepted Tuitions</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue"><i data-lucide="trending-up"></i></div>
+        <div class="stat-info">
+          <h3 id="statAcceptanceRate">0%</h3>
+          <span>Acceptance Rate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Request Analytics Panel -->
+    <div class="dash-section" style="margin-bottom: 2rem;">
+      <div class="section-header" style="border-bottom: 1px solid #f1f5f9; padding-bottom: 1rem;">
+        <div>
+          <h2
+            style="font-size: 1.25rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="bar-chart-3" style="color: #7c3aed; width: 22px; height: 22px;"></i>
+            Request Status & Pipeline Analytics
+          </h2>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.2rem;">Live breakdown of student inquiries,
+            conversion velocity, and monthly earnings</p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <div
+            style="background: #ecfdf5; border: 1px solid #a7f3d0; padding: 0.45rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #065f46; text-transform: uppercase;">Accepted
+              Pipeline:</span>
+            <strong style="color: #059669; font-size: 0.95rem;" id="statAcceptedEarnings">৳ 0</strong>
+          </div>
+          <div
+            style="background: #fffbeb; border: 1px solid #fde68a; padding: 0.45rem 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #92400e; text-transform: uppercase;">Pending
+              Potential:</span>
+            <strong style="color: #d97706; font-size: 0.95rem;" id="statPendingPipeline">৳ 0</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Distribution Bar -->
+      <div style="margin-top: 1.5rem;">
+        <div
+          style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 0.6rem;">
+          <span>STATUS DISTRIBUTION OVERVIEW</span>
+          <span id="distributionSummaryText">0 Total Evaluated</span>
+        </div>
+        <div
+          style="height: 14px; background: #e2e8f0; border-radius: 9999px; overflow: hidden; display: flex; width: 100%; box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);"
+          id="statusProgressBar">
+          <div id="segmentAccepted"
+            style="background: linear-gradient(90deg, #10b981, #059669); width: 0%; transition: width 0.6s ease;"
+            title="Accepted"></div>
+          <div id="segmentPending"
+            style="background: linear-gradient(90deg, #f59e0b, #d97706); width: 0%; transition: width 0.6s ease;"
+            title="Pending"></div>
+          <div id="segmentRejected"
+            style="background: linear-gradient(90deg, #f43f5e, #e11d48); width: 0%; transition: width 0.6s ease;"
+            title="Rejected"></div>
+        </div>
+
+        <!-- Status Legend & Metrics -->
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.25rem;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.85rem 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #334155;">Accepted Tuitions</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span style="font-size: 1.35rem; font-weight: 800; color: #0f172a;" id="legendAcceptedCount">0</span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #059669;" id="legendAcceptedPct">0%</span>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.85rem 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #334155;">Pending Review</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span style="font-size: 1.35rem; font-weight: 800; color: #0f172a;" id="legendPendingCount">0</span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #d97706;" id="legendPendingPct">0%</span>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.85rem 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #e11d48;"></span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #334155;">Declined / Closed</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span style="font-size: 1.35rem; font-weight: 800; color: #0f172a;" id="legendRejectedCount">0</span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #e11d48;" id="legendRejectedPct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- In-Demand Subjects in Queue -->
+        <div style="margin-top: 1.25rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase;">
+            <i data-lucide="book-open"
+              style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> Subjects in Queue:
+          </span>
+          <div id="subjectChipsContainer" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-size: 0.75rem; color: #94a3b8;">Loading subject inquiries...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Requests Management Table -->
+    <div class="dash-section">
+      <div class="section-header">
+        <div>
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">Incoming Booking Requests</h2>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.2rem;">Direct inquiries from verified students and
+            guardians</p>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+          <!-- Live Search Filter -->
+          <div style="position: relative; min-width: 240px;">
+            <input type="text" id="requestSearchInput" oninput="applyFilters()" placeholder=""
+              style="width: 100%; border: 1px solid #cbd5e1; border-radius: 9999px; padding: 0.45rem 1rem 0.45rem 2.25rem; font-size: 0.85rem; outline: none; transition: border-color 0.2s;" />
+            <i data-lucide="search"
+              style="position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: #94a3b8;"></i>
+          </div>
+
+          <div class="filter-tabs">
+            <button class="tab-btn active" onclick="filterRequests('all', this)">All (<span
+                id="tabCountAll">0</span>)</button>
+            <button class="tab-btn" onclick="filterRequests('pending', this)">Pending (<span
+                id="tabCountPending">0</span>)</button>
+            <button class="tab-btn" onclick="filterRequests('accepted', this)">Accepted (<span
+                id="tabCountAccepted">0</span>)</button>
+            <button class="tab-btn" onclick="filterRequests('rejected', this)">Rejected (<span
+                id="tabCountRejected">0</span>)</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="requests-table">
+          <thead>
+            <tr>
+              <th>Request Code</th>
+              <th>Student / Guardian</th>
+              <th>Subjects & Class</th>
+              <th>Location & Medium</th>
+              <th>Budget Offered</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="requestsTableBody">
+            <tr>
+              <td colspan="7" class="empty-state">
+                <i data-lucide="loader-2"></i>
+                <p>Loading booking requests...</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal: Add New Verified Tutor (Visible from Tutor Desk) -->
+  <div class="modal-overlay hidden" id="adminAddTutorModal" style="z-index: 10050;">
+    <div class="modal-backdrop" id="adminAddTutorBackdrop" onclick="closeAdminAddTutorModal()"></div>
+    <div class="modal-container admin-add-tutor-container" style="max-width: 620px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden;">
+      <div class="modal-header" style="flex-shrink: 0;">
+        <div>
+          <h3 class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="user-plus" style="color: #2563eb; width: 22px; height: 22px;"></i> Add Verified Tutor
+          </h3>
+          <p class="modal-subtitle">Manually add an educator profile with locations & details to display on the website</p>
+        </div>
+        <button class="modal-close-btn" id="adminAddTutorCloseBtn" onclick="closeAdminAddTutorModal()" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <form id="adminAddTutorForm" class="admin-add-tutor-form" onsubmit="handleAdminAddTutorSubmit(event)" style="display: flex; flex-direction: column; overflow: hidden; flex: 1; max-height: calc(90vh - 75px);">
+        <div class="admin-add-tutor-form-body" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; max-height: 80vh; overflow-y: auto; flex: 1;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorName">TUTOR FULL NAME <span class="required-star">*</span></label>
+              <input type="text" id="addTutorName" class="form-input" placeholder="" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorEmail">EMAIL ADDRESS <span class="required-star">*</span></label>
+              <input type="email" id="addTutorEmail" class="form-input" placeholder="" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorPhone">PHONE NUMBER</label>
+              <input type="tel" id="addTutorPhone" class="form-input" placeholder="" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorPassword">INITIAL PASSWORD</label>
+              <input type="text" id="addTutorPassword" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorInstitution">UNIVERSITY / INSTITUTION <span class="required-star">*</span></label>
+              <input type="text" id="addTutorInstitution" class="form-input" placeholder="" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorDepartment">DEPARTMENT / FACULTY</label>
+              <input type="text" id="addTutorDepartment" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="addTutorLocations">PREFERRED LOCATIONS & COVERAGE AREAS <span class="required-star">*</span></label>
+            <div class="input-with-icon">
+              <span class="input-icon"><i data-lucide="map-pin"></i></span>
+              <input type="text" id="addTutorLocations" class="form-input" placeholder="" required />
+            </div>
+            <small style="color: #64748b; font-size: 0.75rem; margin-top: 0.25rem;">This enables parents searching these areas to find this tutor automatically.</small>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorSubjects">TEACHING SUBJECTS (Comma-separated) <span class="required-star">*</span></label>
+              <input type="text" id="addTutorSubjects" class="form-input" placeholder="" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorRate">MONTHLY TUITION RATE</label>
+              <input type="text" id="addTutorRate" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorRating">INITIAL RATING</label>
+              <input type="number" step="0.01" min="1" max="5" id="addTutorRating" class="form-input" placeholder="" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorAvatar">CUSTOM AVATAR IMAGE URL (Optional)</label>
+              <input type="url" id="addTutorAvatar" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="addTutorBio">TUTOR BIO & CREDENTIALS SUMMARY</label>
+            <textarea id="addTutorBio" rows="2" class="form-textarea" placeholder=""></textarea>
+          </div>
+        </div>
+
+        <div class="admin-add-tutor-footer" style="padding: 1rem 1.5rem; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 0.75rem; flex-shrink: 0; position: sticky; bottom: 0; z-index: 10; box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);">
+          <button type="button" class="btn btn-secondary" onclick="closeAdminAddTutorModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="adminAddTutorSubmitBtn" style="min-width: 170px;">
+            <i data-lucide="check" class="btn-icon"></i>
+            <span>Publish Tutor Profile</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let allRequests = [];
+    let currentFilterStatus = 'all';
+
+    async function loadTutorData() {
+      try {
+        const token = localStorage.getItem("auth_token");
+        const headers = token ? { "Authorization": `Bearer ${token}` } : {};
+        const res = await fetch('/api/tutor/dashboard-stats', { headers });
+        const data = await res.json();
+
+        if (data.success) {
+          const stats = data.stats || {};
+          const total = stats.totalRequests || 0;
+          const pending = stats.pendingCount || 0;
+          const accepted = stats.acceptedCount || 0;
+          const rejected = stats.rejectedCount || 0;
+
+          // Main KPI Cards
+          document.getElementById('statTotalRequests').textContent = total;
+          document.getElementById('statPendingRequests').textContent = pending;
+          document.getElementById('statAcceptedRequests').textContent = accepted;
+          document.getElementById('statAcceptanceRate').textContent = (stats.acceptanceRate || 0) + '%';
+
+          // Financial Analytics
+          document.getElementById('statAcceptedEarnings').textContent = '৳ ' + (stats.acceptedEarnings || 0).toLocaleString();
+          document.getElementById('statPendingPipeline').textContent = '৳ ' + (stats.pendingPipeline || 0).toLocaleString();
+
+          // Status Percentages & Visual Bar
+          const accPct = total > 0 ? Math.round((accepted / total) * 100) : 0;
+          const pendPct = total > 0 ? Math.round((pending / total) * 100) : 0;
+          const rejPct = total > 0 ? (100 - accPct - pendPct) : 0;
+
+          document.getElementById('segmentAccepted').style.width = accPct + '%';
+          document.getElementById('segmentPending').style.width = pendPct + '%';
+          document.getElementById('segmentRejected').style.width = rejPct + '%';
+
+          document.getElementById('distributionSummaryText').textContent = `${total} Total Inquiries Processed`;
+
+          // Legend Metrics
+          document.getElementById('legendAcceptedCount').textContent = accepted;
+          document.getElementById('legendAcceptedPct').textContent = accPct + '%';
+          document.getElementById('legendPendingCount').textContent = pending;
+          document.getElementById('legendPendingPct').textContent = pendPct + '%';
+          document.getElementById('legendRejectedCount').textContent = rejected;
+          document.getElementById('legendRejectedPct').textContent = rejPct + '%';
+
+          // Tab Badge Counts
+          document.getElementById('tabCountAll').textContent = total;
+          document.getElementById('tabCountPending').textContent = pending;
+          document.getElementById('tabCountAccepted').textContent = accepted;
+          document.getElementById('tabCountRejected').textContent = rejected;
+
+          // Subject Chips
+          const chipsContainer = document.getElementById('subjectChipsContainer');
+          if (chipsContainer) {
+            const subjectCounts = stats.subjectCounts || {};
+            const subjects = Object.keys(subjectCounts);
+            if (subjects.length > 0) {
+              chipsContainer.innerHTML = subjects.map(s => `
+                <span style="background: rgba(124, 58, 237, 0.08); color: #7c3aed; border: 1px solid rgba(124, 58, 237, 0.2); padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.35rem;">
+                  ${s} <span style="background: #7c3aed; color: #fff; width: 16px; height: 16px; border-radius: 50%; font-size: 0.68rem; display: inline-flex; align-items: center; justify-content: center;">${subjectCounts[s]}</span>
+                </span>
+              `).join('');
+            } else {
+              chipsContainer.innerHTML = `<span style="font-size: 0.8rem; color: #94a3b8;">No specific subjects tagged yet.</span>`;
+            }
+          }
+
+          allRequests = data.requests || [];
+          applyFilters();
+        }
+      } catch (err) {
+        console.error('Error loading dashboard:', err);
+      }
+    }
+
+    function applyFilters() {
+      const query = (document.getElementById('requestSearchInput')?.value || '').toLowerCase().trim();
+      let filtered = allRequests;
+
+      if (currentFilterStatus !== 'all') {
+        filtered = filtered.filter(r => r.status === currentFilterStatus);
+      }
+
+      if (query) {
+        filtered = filtered.filter(r => {
+          const code = (r.request_code || '').toLowerCase();
+          const name = (r.requester_name || '').toLowerCase();
+          const subj = (r.subjects || '').toLowerCase();
+          const loc = (r.location_zone || '').toLowerCase();
+          const grade = (r.student_grade_level || '').toLowerCase();
+          return code.includes(query) || name.includes(query) || subj.includes(query) || loc.includes(query) || grade.includes(query);
+        });
+      }
+
+      renderRequests(filtered);
+    }
+
+    function filterRequests(status, btn) {
+      currentFilterStatus = status;
+      document.querySelectorAll('.filter-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      applyFilters();
+    }
+
+    function renderRequests(list) {
+      const tbody = document.getElementById('requestsTableBody');
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="empty-state">
+              <i data-lucide="calendar-x"></i>
+              <p>No booking requests match the selected criteria.</p>
+            </td>
+          </tr>
+        `;
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      tbody.innerHTML = list.map(req => `
+        <tr>
+          <td><strong style="font-family: monospace; color: #7c3aed; font-size: 0.85rem;">${req.request_code}</strong></td>
+          <td>
+            <strong>${req.requester_name || 'Guardian'}</strong>
+            <div style="font-size: 0.8rem; color: #64748b;">Role: ${req.requester_role} | ${req.requester_phone || req.requester_email || 'Contact on accept'}</div>
+          </td>
+          <td>
+            <div><strong>${req.subjects}</strong></div>
+            <div style="font-size: 0.8rem; color: #64748b;">${req.student_grade_level} (${req.days_per_week || 3} days/wk)</div>
+          </td>
+          <td>
+            <div>${req.location_zone}</div>
+            <div style="font-size: 0.8rem; color: #64748b;">${req.tuition_medium}</div>
+          </td>
+          <td><strong style="color: #059669; font-size: 0.95rem;">৳ ${(Number(req.budget_offered) || 0).toLocaleString()}</strong></td>
+          <td><span class="status-badge ${req.status}">${req.status}</span></td>
+          <td>
+            ${req.status === 'pending' ? `
+              <div class="action-btn-group">
+                <button class="btn-action accept" onclick="updateStatus(${req.id}, 'accepted')">
+                  <i data-lucide="check"></i> Accept
+                </button>
+                <button class="btn-action reject" onclick="updateStatus(${req.id}, 'rejected')">
+                  <i data-lucide="x"></i> Decline
+                </button>
+              </div>
+            ` : `
+              <span style="font-size: 0.8rem; color: #94a3b8;">Decision recorded</span>
+            `}
+          </td>
+        </tr>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    async function updateStatus(bookingId, status) {
+      let rejectionReason = '';
+      if (status === 'rejected') {
+        rejectionReason = prompt('Optional reason for declining this request:') || 'Schedule conflict';
+      }
+
+      try {
+        const token = localStorage.getItem("auth_token");
+        const headers = {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        };
+        const res = await fetch(`/api/bookings/${bookingId}/status`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ status, rejection_reason: rejectionReason })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(`Booking request has been ${status}.`);
+          loadTutorData();
+        } else {
+          alert(data.error || 'Failed to update request.');
+        }
+      } catch (err) {
+        alert('Network error updating status.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Role-based visibility check
+      const currentUser = (function () {
+        try {
+          const raw = localStorage.getItem("tutoriaa_user") || localStorage.getItem("combine_currentUser");
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      })();
+
+      const adminHubBtn = document.getElementById("tutorDashAdminHubLink");
+      const userRole = (currentUser && currentUser.role) ? currentUser.role.toLowerCase().trim() : '';
+
+      if (userRole === 'admin') {
+        // Admin has access to both Tutor Desk and Admin Hub
+        if (adminHubBtn) {
+          adminHubBtn.classList.remove('hidden');
+          adminHubBtn.style.display = 'inline-flex';
+        }
+      } else {
+        // For tutors (and non-admins): ensure ONLY Tutor Desk appears, Admin Hub is hidden
+        if (adminHubBtn) {
+          adminHubBtn.classList.add('hidden');
+          adminHubBtn.style.display = 'none';
+        }
+
+        // Students do not have access to Tutor Desk
+        if (userRole === 'student') {
+          const mainContainer = document.querySelector('.dash-container');
+          if (mainContainer) {
+            mainContainer.innerHTML = `
+              <div style="background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 3rem 1.5rem; text-align: center; max-width: 600px; margin: 3rem auto; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);">
+                <div style="width: 60px; height: 60px; border-radius: 50%; background: #fef2f2; color: #ef4444; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                  <i data-lucide="shield-alert" style="width: 32px; height: 32px;"></i>
+                </div>
+                <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Student Account Detected</h2>
+                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem;">The Tutor Desk is reserved for verified educators and administrators. Students do not see or have access to these management options.</p>
+                <a href="index.html" class="btn btn-primary" style="border-radius: 9999px; text-decoration: none; padding: 0.65rem 1.5rem; font-weight: 700;">
+                  Return to Home
+                </a>
+              </div>
+            `;
+          }
+        }
+    function openAdminAddTutorModal() {
+      const modal = document.getElementById("adminAddTutorModal");
+      if (modal) {
+        modal.classList.remove("hidden");
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeAdminAddTutorModal() {
+      const modal = document.getElementById("adminAddTutorModal");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    async function handleAdminAddTutorSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById("adminAddTutorSubmitBtn");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i data-lucide="loader-2" class="animate-spin btn-icon"></i> Publishing...`;
+        if (window.lucide) lucide.createIcons();
+      }
+
+      const token = localStorage.getItem("auth_token");
+      const payload = {
+        name: document.getElementById("addTutorName")?.value?.trim(),
+        email: document.getElementById("addTutorEmail")?.value?.trim(),
+        phone: document.getElementById("addTutorPhone")?.value?.trim(),
+        password: document.getElementById("addTutorPassword")?.value?.trim() || "TutorPassword123!",
+        institution: document.getElementById("addTutorInstitution")?.value?.trim(),
+        department: document.getElementById("addTutorDepartment")?.value?.trim(),
+        preferred_locations: document.getElementById("addTutorLocations")?.value?.trim(),
+        subjects: document.getElementById("addTutorSubjects")?.value?.trim(),
+        monthly_rate: document.getElementById("addTutorRate")?.value?.trim(),
+        rating: parseFloat(document.getElementById("addTutorRating")?.value) || 4.9,
+        avatar_url: document.getElementById("addTutorAvatar")?.value?.trim() || "",
+        bio: document.getElementById("addTutorBio")?.value?.trim() || ""
+      };
+
+      try {
+        const res = await fetch("/api/admin/tutors", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(data.message || "Tutor profile published successfully!");
+          closeAdminAddTutorModal();
+          document.getElementById("adminAddTutorForm")?.reset();
+        } else {
+          alert(data.error || "Failed to add tutor");
+        }
+      } catch (err) {
+        console.error("Add tutor error:", err);
+        alert("Network error publishing tutor profile");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<i data-lucide="check" class="btn-icon"></i><span>Publish Tutor Profile</span>`;
+          if (window.lucide) lucide.createIcons();
+        }
+      }
+    }
+
+    if (window.lucide) lucide.createIcons();
+    if (userRole !== 'student') {
+      loadTutorData();
+    }
+  });
+</script>
+</body>
+
+</html>

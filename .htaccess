@@ -1,0 +1,17 @@
+# InfinityFree Apache Configuration for CombineTuition
+Options -MultiViews
+RewriteEngine On
+
+# Enforce HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Support clean URLs without .html extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# SPA fallback for clean application routes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(jobs|why-combined|how-it-works|become-a-tutor|contact-coordinator|tutor-dashboard|admin-dashboard)$ $1.html [L]

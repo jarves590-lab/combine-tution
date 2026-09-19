@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | CombinedTution</title>
+  <meta name="description" content="Sign in to CombinedTution. Please enter email and password to access." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Exact match to https://tutoriaa.com/login */
+    body.tutoriaa-login-body {
+      margin: 0;
+      padding: 0;
+      background-color: #f8fafc;
+      font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .tutoriaa-login-main {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 3rem 1rem;
+      background-color: #f8fafc;
+      box-sizing: border-box;
+    }
+
+    .tutoriaa-login-form {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      max-width: 24rem;
+      /* max-w-96 */
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tutoriaa-logo-link {
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .tutoriaa-logo-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .tutoriaa-logo-icon svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+
+    .tutoriaa-logo-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+
+    .tutoriaa-logo-dot {
+      color: #2563eb;
+    }
+
+    .tutoriaa-login-title {
+      font-size: 2.25rem;
+      /* text-4xl */
+      font-weight: 700;
+      color: #111827;
+      /* text-gray-900 */
+      letter-spacing: -0.025em;
+      /* tracking-tight */
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .tutoriaa-login-subtitle {
+      margin-top: 1rem;
+      font-size: 1rem;
+      /* text-base */
+      color: #6b7280;
+      /* text-gray-500 */
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .tutoriaa-field-group {
+      margin-top: 2.5rem;
+      /* mt-10 */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tutoriaa-field-group.mt-6 {
+      margin-top: 1.5rem;
+      /* mt-6 */
+    }
+
+    .tutoriaa-label {
+      font-weight: 700;
+      font-size: 0.875rem;
+      /* text-sm */
+      color: #374151;
+      /* text-gray-700 */
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      /* tracking-wider */
+    }
+
+    .tutoriaa-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tutoriaa-forgot-link {
+      font-size: 0.75rem;
+      /* text-xs */
+      font-weight: 700;
+      color: #2563eb;
+      /* text-violet-600 */
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+      /* tracking-wide */
+      text-decoration: none;
+    }
+
+    .tutoriaa-forgot-link:hover {
+      text-decoration: underline;
+    }
+
+    .tutoriaa-input {
+      margin-top: 0.5rem;
+      /* mt-2 */
+      border-radius: 0.75rem;
+      /* rounded-xl */
+      box-shadow: 0 0 0 1px #e5e7eb;
+      /* ring-1 ring-gray-200 */
+      outline: none;
+      padding: 0.875rem 1rem;
+      /* px-4 py-3.5 */
+      width: 100%;
+      transition: all 0.2s;
+      background-color: rgba(249, 250, 251, 0.5);
+      /* bg-gray-50/50 */
+      font-size: 0.925rem;
+      color: #111827;
+      box-sizing: border-box;
+      border: none;
+      font-family: inherit;
+    }
+
+    .tutoriaa-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .tutoriaa-input:focus {
+      background-color: #ffffff;
+      box-shadow: 0 0 0 2px #2563eb;
+      /* focus:ring-2 focus:ring-violet-600 */
+    }
+
+    .tutoriaa-remember-row {
+      margin-top: 1.5rem;
+      /* mt-6 */
+      display: flex;
+      align-items: center;
+    }
+
+    .tutoriaa-checkbox {
+      width: 1rem;
+      /* w-4 */
+      height: 1rem;
+      /* h-4 */
+      border-radius: 0.25rem;
+      /* rounded */
+      border: 1px solid #d1d5db;
+      /* border-gray-300 */
+      accent-color: #2563eb;
+      /* text-violet-600 */
+      cursor: pointer;
+    }
+
+    .tutoriaa-remember-label {
+      margin-left: 0.75rem;
+      /* ml-3 */
+      font-size: 0.75rem;
+      /* text-xs */
+      font-weight: 700;
+      color: #6b7280;
+      /* text-gray-500 */
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      /* tracking-wider */
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tutoriaa-submit-btn {
+      margin-top: 2rem;
+      /* mt-8 */
+      padding: 1rem;
+      /* py-4 */
+      width: 100%;
+      cursor: pointer;
+      border-radius: 0.75rem;
+      /* rounded-xl */
+      background-color: #2563eb;
+      /* bg-violet-600 */
+      color: #ffffff;
+      font-weight: 900;
+      /* font-black */
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      /* tracking-widest */
+      font-size: 0.875rem;
+      /* text-sm */
+      transition: all 0.2s;
+      border: none;
+      box-shadow: 0 10px 25px -3px rgba(37, 99, 235, 0.25);
+      /* shadow-lg shadow-violet-200 */
+      font-family: inherit;
+    }
+
+    .tutoriaa-submit-btn:hover {
+      background-color: #1d4ed8;
+      /* hover:bg-violet-700 */
+    }
+
+    .tutoriaa-submit-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* OR Divider */
+    .tutoriaa-divider-wrap {
+      margin-top: 1.25rem;
+      /* mt-5 */
+      position: relative;
+    }
+
+    .tutoriaa-divider-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .tutoriaa-divider-line {
+      width: 100%;
+      border-top: 1px solid #f3f4f6;
+      /* border-gray-100 */
+    }
+
+    .tutoriaa-divider-text-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .tutoriaa-divider-text {
+      background-color: #f8fafc;
+      /* bg-slate-50 */
+      padding: 0 1rem;
+      /* px-4 */
+      color: #9ca3af;
+      /* text-gray-400 */
+    }
+
+    /* Google Button */
+    .tutoriaa-google-wrap {
+      margin-top: 1rem;
+      /* mt-4 */
+    }
+
+    .tutoriaa-google-btn {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      /* py-3.5 */
+      border: 1px solid #e5e7eb;
+      /* border border-gray-200 */
+      border-radius: 0.75rem;
+      /* rounded-xl */
+      background-color: #ffffff;
+      transition: all 0.2s;
+      font-size: 0.75rem;
+      /* text-xs */
+      font-weight: 700;
+      color: #4b5563;
+      /* text-gray-600 */
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      /* shadow-sm */
+      cursor: pointer;
+      text-decoration: none;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    .tutoriaa-google-btn:hover {
+      background-color: #f9fafb;
+      /* hover:bg-gray-50 */
+    }
+
+    .tutoriaa-google-icon {
+      width: 1.25rem;
+      /* w-5 */
+      height: 1.25rem;
+      /* h-5 */
+    }
+
+    .tutoriaa-footer-prompt {
+      text-align: center;
+      padding: 2rem 0;
+      /* py-8 */
+      font-size: 0.875rem;
+      /* text-sm */
+      color: #6b7280;
+      /* text-gray-500 */
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .tutoriaa-signup-link {
+      color: #2563eb;
+      /* text-violet-600 */
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .tutoriaa-signup-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Logged in state card */
+    .tutoriaa-already-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .password-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .password-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem;
+      border-radius: 8px;
+      transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .password-toggle-btn:hover {
+      color: #2563eb !important;
+      background-color: rgba(37, 99, 235, 0.08) !important;
+    }
+
+    .password-toggle-btn:active {
+      transform: translateY(-50%) scale(0.92) !important;
+    }
+
+    .password-toggle-btn:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 1px;
+    }
+  </style>
+</head>
+
+<body class="tutoriaa-login-body">
+
+  <main class="tutoriaa-login-main">
+    <!-- Logged in state (if user is already authenticated) -->
+    <div id="alreadyLoggedInState" class="tutoriaa-login-form tutoriaa-already-card hidden">
+      <div
+        style="width: 4rem; height: 4rem; border-radius: 50%; background: #ede9fe; color: #2563eb; font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;"
+        id="userInitialsBadge">U</div>
+      <h3 style="font-size: 1.25rem; font-weight: 800; color: #111827; margin: 0 0 0.25rem;" id="activeUserName">User
+        Name</h3>
+      <p style="color: #6b7280; font-size: 0.875rem; margin: 0 0 1.25rem;" id="activeUserEmail">Logged in</p>
+
+      <!-- User Timestamps Info Card -->
+      <div
+        style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1rem 1.15rem; margin-bottom: 1.25rem; text-align: left; font-size: 0.825rem;">
+        <div
+          style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 0.65rem; border-bottom: 1px dashed #e2e8f0;">
+          <span style="color: #64748b; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+            📅 Registered:
+          </span>
+          <span id="activeUserRegistered" style="font-weight: 700; color: #1e293b;">--</span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 0.65rem;">
+          <span style="color: #64748b; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+            ⚡ Last Login:
+          </span>
+          <span id="activeUserLastLogin" style="font-weight: 700; color: #2563eb;">--</span>
+        </div>
+      </div>
+
+      <!-- Return to Home -->
+      <a href="index.html" class="tutoriaa-submit-btn"
+        style="text-decoration: none; display: block; box-sizing: border-box; text-align: center; margin-top: 0; margin-bottom: 0.75rem;">
+        Return to Home
+      </a>
+
+      <!-- Database & Data Tools Box -->
+      <div
+        style="margin-top: 0.5rem; margin-bottom: 0.75rem; background: #fdf4ff; border: 1px solid #f5d0fe; border-radius: 14px; padding: 1rem; text-align: left;">
+        <div
+          style="font-weight: 800; font-size: 0.85rem; color: #86198f; margin-bottom: 0.35rem; display: flex; align-items: center; justify-content: space-between;">
+          <span>💾 Database & User Activity</span>
+          <span
+            style="font-size: 0.7rem; background: #fae8ff; color: #a21caf; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px;">SQLite</span>
+        </div>
+        <p style="font-size: 0.75rem; color: #701a75; margin: 0 0 0.75rem;">All registration and login timestamps are
+          recorded in the server database.</p>
+
+        <div style="display: flex; gap: 0.5rem; flex-direction: column;">
+          <a href="/api/admin/download-db" download class="tutoriaa-google-btn"
+            style="padding: 0.6rem 0.75rem; font-size: 0.8rem; font-weight: 700; color: #4338ca; border-color: #c7d2fe; background: #ffffff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+            ⬇️ Download Database (.sqlite)
+          </a>
+          <a href="/api/admin/download-csv" download class="tutoriaa-google-btn"
+            style="padding: 0.6rem 0.75rem; font-size: 0.8rem; font-weight: 700; color: #047857; border-color: #a7f3d0; background: #ffffff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+            📊 Export Users as CSV (Excel)
+          </a>
+          <button type="button" id="toggleLiveDbBtn" class="tutoriaa-google-btn"
+            style="padding: 0.6rem 0.75rem; font-size: 0.8rem; font-weight: 700; color: #6b21a8; border-color: #e9d5ff; background: #ffffff; display: flex; align-items: center; justify-content: center; gap: 0.4rem; cursor: pointer;">
+            👁️ View Live Users & Dates
+          </button>
+        </div>
+
+        <!-- Live Database Viewer Container -->
+        <div id="liveDbViewer" class="hidden"
+          style="margin-top: 0.75rem; max-height: 220px; overflow-y: auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.6rem; font-size: 0.75rem;">
+          <div id="liveDbLoading" style="color: #64748b; text-align: center; padding: 0.5rem;">Loading records...</div>
+          <div id="liveDbContent"></div>
+        </div>
+      </div>
+
+      <button type="button" id="tutoriaaLogoutBtn" class="tutoriaa-google-btn"
+        style="color: #e11d48; border-color: #fecdd3; width: 100%;">
+        Log Out
+      </button>
+    </div>
+
+    <!-- Login Form (Exact match to uploaded screenshot) -->
+    <form id="tutoriaaLoginForm" class="tutoriaa-login-form">
+      <!-- Logo -->
+      <a href="index.html" class="tutoriaa-logo-link">
+        <div class="tutoriaa-logo-icon"
+          style="width: 3.1rem; height: 3.1rem; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25); border: 2px solid rgba(37, 99, 235, 0.2); overflow: hidden; background: #faf7f2;">
+          <img src="images/logo.jpeg" alt="Combined Tuition Logo"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+        </div>
+        <span class="tutoriaa-logo-text"
+          style="font-family: 'Poppins', 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.65rem; color: #0f172a; letter-spacing: -0.02em;">CombinedTution<span
+            class="tutoriaa-logo-dot" style="color: #2563eb;">.</span></span>
+      </a>
+
+      <!-- Heading & Subtitle -->
+      <h2 class="tutoriaa-login-title"
+        style="font-family: 'Poppins', sans-serif; font-size: 2.65rem; font-weight: 800; color: #0f172a; letter-spacing: -0.03em; margin: 0; line-height: 1.1;">
+        Sign in</h2>
+      <p class="tutoriaa-login-subtitle"
+        style="font-family: 'Poppins', sans-serif; margin-top: 0.75rem; margin-bottom: 2rem; font-size: 1rem; color: #64748b; font-weight: 500;">
+        Please enter email and password to access.</p>
+
+      <!-- Email / Phone Number Field -->
+      <div class="tutoriaa-field-group" style="margin-top: 0;">
+        <label class="tutoriaa-label" for="email"
+          style="font-size: 0.8rem; font-weight: 800; color: #1e293b; letter-spacing: 0.06em; text-transform: uppercase;">EMAIL
+          / PHONE NUMBER</label>
+        <input id="email" type="text" name="email" placeholder="" required class="tutoriaa-input"
+          style="margin-top: 0.5rem; border-radius: 12px; border: 1px solid #e2e8f0; background: #fbfcfd; padding: 0.95rem 1.15rem; font-size: 0.95rem; color: #0f172a; outline: none; transition: all 0.2s;" />
+      </div>
+
+      <!-- Password Field -->
+      <div class="tutoriaa-field-group mt-6" style="margin-top: 1.35rem;">
+        <div class="tutoriaa-label-row" style="display: flex; justify-content: space-between; align-items: center;">
+          <label class="tutoriaa-label" for="password"
+            style="font-size: 0.8rem; font-weight: 800; color: #1e293b; letter-spacing: 0.06em; text-transform: uppercase;">PASSWORD</label>
+          <a href="#forgot" id="forgotPassLink" class="tutoriaa-forgot-link"
+            style="color: #2563eb; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none;">FORGOT?</a>
+        </div>
+        <div class="password-input-wrap"
+          style="position: relative; display: flex; align-items: center; margin-top: 0.5rem;">
+          <input id="password" type="password" name="password" placeholder="" required class="tutoriaa-input"
+            style="width: 100%; box-sizing: border-box; border-radius: 12px; border: 1px solid #e2e8f0; background: #fbfcfd; padding: 0.95rem 2.85rem 0.95rem 1.15rem; font-size: 0.95rem; color: #0f172a; outline: none; transition: all 0.2s;" />
+          <button type="button" id="toggleLoginPasswordBtn" class="password-toggle-btn" data-target="password"
+            aria-label="Show password" title="Show password"
+            style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #94a3b8; display: flex; align-items: center; justify-content: center; padding: 0.4rem; border-radius: 8px; transition: color 0.2s, background-color 0.2s;">
+            <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+              <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+              <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+              <line x1="2" x2="22" y1="2" y2="22" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Remember Me Checkbox -->
+      <div class="tutoriaa-remember-row" style="margin-top: 1.35rem; display: flex; align-items: center;">
+        <input id="remember" type="checkbox" name="remember" checked class="tutoriaa-checkbox"
+          style="width: 1.1rem; height: 1.1rem; border-radius: 4px; border: 1px solid #d1d5db; accent-color: #2563eb; cursor: pointer;" />
+        <label for="remember" class="tutoriaa-remember-label"
+          style="margin-left: 0.65rem; font-size: 0.75rem; font-weight: 800; color: #475569; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; user-select: none;">REMEMBER
+          ME</label>
+      </div>
+
+      <!-- Error Feedback Box -->
+      <div id="loginErrorAlert" class="hidden"
+        style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 0.75rem 1rem; border-radius: 12px; font-size: 0.85rem; margin-top: 1rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+        <span id="loginErrorMsg"></span>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="loginSubmitBtn" class="tutoriaa-submit-btn"
+        style="margin-top: 1.5rem; padding: 1rem; width: 100%; cursor: pointer; border-radius: 12px; background-color: #2563eb; color: #ffffff; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.925rem; border: none; box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.4); transition: all 0.2s; font-family: inherit;">
+        <span>LOGIN</span>
+      </button>
+
+      <!-- OR Divider -->
+      <div class="tutoriaa-divider-wrap" style="margin-top: 1.5rem; position: relative;">
+        <div class="tutoriaa-divider-bg" aria-hidden="true"
+          style="position: absolute; inset: 0; display: flex; align-items: center;">
+          <div class="tutoriaa-divider-line" style="width: 100%; border-top: 1px solid #f1f5f9;"></div>
+        </div>
+        <div class="tutoriaa-divider-text-wrap"
+          style="position: relative; display: flex; justify-content: center; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;">
+          <span class="tutoriaa-divider-text"
+            style="background-color: #f8fafc; padding: 0 0.85rem; color: #94a3b8;">OR</span>
+        </div>
+      </div>
+
+      <!-- Google Authentication -->
+      <div class="tutoriaa-google-wrap" style="margin-top: 1.25rem;">
+        <!-- Official Google Identity Services Render Target -->
+        <div id="g_id_signin_login" class="g_id_signin_official_box"
+          style="display: flex; justify-content: center; margin-bottom: 0.5rem;"></div>
+        <button type="button" id="googleLoginBtn" class="tutoriaa-google-btn"
+          style="display: flex; width: 100%; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.9rem 1rem; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; transition: all 0.2s; font-size: 0.925rem; font-weight: 700; color: #1e293b; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); cursor: pointer; text-decoration: none; box-sizing: border-box; font-family: inherit;">
+          <svg class="tutoriaa-google-icon" viewBox="0 0 24 24" style="width: 1.25rem; height: 1.25rem;">
+            <path
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              fill="#4285F4" />
+            <path
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              fill="#34A853" />
+            <path
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+              fill="#FBBC05" />
+            <path
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+              fill="#EA4335" />
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+      </div>
+
+      <!-- Quick Demo Role Switcher Bar -->
+      <div
+        style="margin-top: 1.5rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.85rem 1rem; text-align: left;">
+        <div
+          style="font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+          <span>⚡ Quick Demo Role Logins</span>
+          <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">Click to auto-fill</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+          <button type="button" onclick="fillDemoRole('tutor')" class="btn"
+            style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border: 1px solid rgba(124, 58, 237, 0.25); border-radius: 8px; padding: 0.45rem 0.2rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; text-align: center;">
+            Tutor
+          </button>
+          <button type="button" onclick="fillDemoRole('admin')" class="btn"
+            style="background: rgba(225, 29, 72, 0.1); color: #e11d48; border: 1px solid rgba(225, 29, 72, 0.25); border-radius: 8px; padding: 0.45rem 0.2rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; text-align: center;">
+            Admin
+          </button>
+          <button type="button" onclick="fillDemoRole('student')" class="btn"
+            style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.25); border-radius: 8px; padding: 0.45rem 0.2rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; text-align: center;">
+            Student
+          </button>
+        </div>
+      </div>
+
+      <!-- Sign up Footer Prompt -->
+      <p class="tutoriaa-footer-prompt"
+        style="text-align: center; padding: 1.5rem 0 0.5rem; font-size: 0.925rem; color: #64748b; font-weight: 500; margin: 0;">
+        Don't have an account? <a href="register.html" class="tutoriaa-signup-link"
+          style="color: #2563eb; font-weight: 800; text-decoration: none;">Sign up</a>
+      </p>
+    </form>
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Shared App JS -->
+  <script src="app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("tutoriaaLoginForm");
+      const emailInput = document.getElementById("email");
+      const passInput = document.getElementById("password");
+      const rememberInput = document.getElementById("remember");
+      const submitBtn = document.getElementById("loginSubmitBtn");
+      const errorAlert = document.getElementById("loginErrorAlert");
+      const errorMsg = document.getElementById("loginErrorMsg");
+      const googleBtn = document.getElementById("googleLoginBtn");
+      const forgotLink = document.getElementById("forgotPassLink");
+
+      const alreadyBox = document.getElementById("alreadyLoggedInState");
+      const userBadge = document.getElementById("userInitialsBadge");
+      const userNameEl = document.getElementById("activeUserName");
+      const userEmailEl = document.getElementById("activeUserEmail");
+      const registeredEl = document.getElementById("activeUserRegistered");
+      const lastLoginEl = document.getElementById("activeUserLastLogin");
+      const toggleLiveDbBtn = document.getElementById("toggleLiveDbBtn");
+      const liveDbViewer = document.getElementById("liveDbViewer");
+      const liveDbContent = document.getElementById("liveDbContent");
+      const liveDbLoading = document.getElementById("liveDbLoading");
+      const logoutBtn = document.getElementById("tutoriaaLogoutBtn");
+
+      function formatDateTime(str) {
+        if (!str) return "Just now";
+        try {
+          const d = new Date(str);
+          if (isNaN(d.getTime())) return str;
+          return d.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+          }) + " at " + d.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit"
+          });
+        } catch (e) {
+          return str;
+        }
+      }
+
+      function showError(msg) {
+        if (!errorAlert || !errorMsg) return;
+        errorMsg.textContent = msg;
+        errorAlert.classList.remove("hidden");
+        errorAlert.style.display = "flex";
+      }
+
+      function hideError() {
+        if (!errorAlert) return;
+        errorAlert.classList.add("hidden");
+        errorAlert.style.display = "none";
+      }
+
+      // Check current session from backend /api/auth/me
+      async function checkSession() {
+        try {
+          const token = localStorage.getItem("auth_token");
+          const headers = token ? { "Authorization": `Bearer ${token}` } : {};
+          const res = await fetch("/api/auth/me", { headers });
+          const data = await res.json();
+
+          if (data.authenticated && data.user) {
+            form.classList.add("hidden");
+            alreadyBox.classList.remove("hidden");
+            if (userBadge) userBadge.textContent = (data.user.name || "U").charAt(0).toUpperCase();
+            if (userNameEl) userNameEl.textContent = data.user.name || "User";
+            if (userEmailEl) userEmailEl.textContent = `${data.user.email} (${data.user.role.toUpperCase()})`;
+            if (registeredEl) registeredEl.textContent = formatDateTime(data.user.created_at);
+            if (lastLoginEl) lastLoginEl.textContent = formatDateTime(data.user.last_login_at);
+            localStorage.setItem("tutoriaa_user", JSON.stringify(data.user));
+          } else {
+            form.classList.remove("hidden");
+            alreadyBox.classList.add("hidden");
+          }
+        } catch (err) {
+          console.error("Session check error:", err);
+        }
+      }
+
+      // Live Database Viewer Toggle
+      if (toggleLiveDbBtn && liveDbViewer) {
+        toggleLiveDbBtn.addEventListener("click", async () => {
+          if (!liveDbViewer.classList.contains("hidden")) {
+            liveDbViewer.classList.add("hidden");
+            toggleLiveDbBtn.innerHTML = "👁️ View Live Users & Dates";
+            return;
+          }
+
+          liveDbViewer.classList.remove("hidden");
+          toggleLiveDbBtn.innerHTML = "✖️ Hide Database Viewer";
+          if (liveDbLoading) liveDbLoading.style.display = "block";
+          if (liveDbContent) liveDbContent.innerHTML = "";
+
+          try {
+            const res = await fetch("/api/admin/users");
+            const resData = await res.json();
+            if (liveDbLoading) liveDbLoading.style.display = "none";
+
+            if (resData.users && resData.users.length > 0) {
+              liveDbContent.innerHTML = resData.users.map(u => `
+                <div style="border-bottom: 1px solid #f1f5f9; padding: 0.55rem 0; line-height: 1.4; text-align: left;">
+                  <div style="font-weight: 700; color: #1e293b; display: flex; justify-content: space-between; align-items: center;">
+                    <span>#${u.id} ${u.name || 'Anonymous'}</span>
+                    <span style="text-transform: uppercase; font-size: 0.65rem; font-weight: 700; padding: 0.1rem 0.4rem; background: #e0e7ff; color: #4338ca; border-radius: 4px;">${u.role || 'guardian'}</span>
+                  </div>
+                  <div style="color: #64748b; font-size: 0.72rem; margin-top: 0.1rem;">${u.email || u.phone || 'No identifier'} (${u.auth_provider || 'local'})</div>
+                  <div style="font-size: 0.7rem; color: #475569; margin-top: 0.3rem; background: #f8fafc; padding: 0.35rem 0.5rem; border-radius: 6px;">
+                    📅 <strong>Registered:</strong> ${formatDateTime(u.created_at)}<br/>
+                    ⚡ <strong>Last Login:</strong> ${formatDateTime(u.last_login_at)}
+                  </div>
+                </div>
+              `).join("");
+            } else {
+              liveDbContent.innerHTML = "<div style='color: #64748b; text-align: center; padding: 0.5rem;'>No users in database yet.</div>";
+            }
+          } catch (e) {
+            if (liveDbLoading) liveDbLoading.style.display = "none";
+            liveDbContent.innerHTML = "<div style='color: #ef4444; padding: 0.5rem;'>Failed to load database records.</div>";
+          }
+        });
+      }
+
+      checkSession();
+
+      // Submit Form to Backend API
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        hideError();
+
+        const identifier = emailInput.value.trim();
+        const password = passInput.value.trim();
+        const remember = rememberInput ? rememberInput.checked : true;
+
+        if (!identifier || !password) {
+          showError("Please enter both email/phone number and password.");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Signing in...</span>`;
+
+        try {
+          const res = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ identifier, email: identifier, password, remember })
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            showError(data.error || "Authentication failed. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span>Login</span>`;
+            return;
+          }
+
+          // Save Token & User in Browser
+          if (data.token) {
+            localStorage.setItem("auth_token", data.token);
+          }
+          if (data.user) {
+            localStorage.setItem("tutoriaa_user", JSON.stringify(data.user));
+            localStorage.setItem("combine_currentUser", JSON.stringify(data.user));
+          }
+
+          showToast(`Welcome back, ${data.user.name}!`);
+          setTimeout(() => {
+            if (data.user && data.user.role === 'tutor') {
+              window.location.href = "index.html#tutor-dashboard";
+            } else if (data.user && data.user.role === 'admin') {
+              window.location.href = "index.html#admin-dashboard";
+            } else {
+              window.location.href = "index.html";
+            }
+          }, 600);
+        } catch (err) {
+          console.error("Login fetch error:", err);
+          showError("Network error: Could not reach the server. Please check your connection.");
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>Login</span>`;
+        }
+      });
+
+      // Google Sign-In is handled by google-auth.js (bindCustomButtons + triggerGoogleSignIn)
+
+
+      // Logout
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", async () => {
+          try {
+            const token = localStorage.getItem("auth_token");
+            await fetch("/api/auth/logout", {
+              method: "POST",
+              headers: token ? { "Authorization": `Bearer ${token}` } : {}
+            });
+          } catch (e) { }
+
+          localStorage.removeItem("auth_token");
+          clearStoredUser();
+          showToast("Logged out successfully.");
+          checkSession();
+        });
+      }
+
+      // Forgot password
+      if (forgotLink) {
+        forgotLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          showToast("Password reset link has been dispatched to your email address.");
+        });
+      }
+
+      window.fillDemoRole = function (role) {
+        if (role === 'tutor') {
+          emailInput.value = 'tanvir@combinetution.com';
+          passInput.value = 'TutorPassword123!';
+        } else if (role === 'admin') {
+          emailInput.value = 'admin@combinetution.com';
+          passInput.value = 'AdminPassword123!';
+        } else if (role === 'student') {
+          emailInput.value = 'student@combinetution.com';
+          passInput.value = 'StudentPassword123!';
+        }
+        showToast(`Auto-filled ${role.toUpperCase()} credentials! Click LOGIN to continue.`);
+      };
+    });
+  </script>
+  <!-- Google Identity Services (Official Google JS Library) -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <!-- Verified Google Sign-In Module -->
+  <script src="google-auth.js"></script>
+</body>
+
+</html>

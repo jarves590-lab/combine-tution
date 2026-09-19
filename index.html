@@ -1,0 +1,3370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CombinedTution</title>
+  <meta name="description"
+    content="Tutoriaa connects learners with verified tutors across Bangladesh. Post tuition requirements or search top tutors for academic success, O/A Levels, and skill development." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Site Loading Animation System -->
+  <div id="sitePreloader" class="site-preloader" aria-label="Loading CombinedTuition" role="status">
+    <div class="preloader-container">
+      <!-- Glowing Animated Shield Badge -->
+      <div class="preloader-logo-badge-wrap">
+        <div class="preloader-pulse-glow"></div>
+        <div class="preloader-orbit-ring preloader-orbit-ring-1"></div>
+        <div class="preloader-orbit-ring preloader-orbit-ring-2"></div>
+        <div class="preloader-logo-box">
+          <svg viewBox="0 0 32 32" class="preloader-shield-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 3L4 7.5V15C4 22.5 9.1 29.5 16 31C22.9 29.5 28 22.5 28 15V7.5L16 3Z"
+              fill="url(#preloaderShieldGrad)" />
+            <path d="M12 16L15 19L21 13" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <defs>
+              <linearGradient id="preloaderShieldGrad" x1="4" y1="3" x2="28" y2="31" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#8b5cf6" />
+                <stop offset="0.5" stop-color="#6c42f5" />
+                <stop offset="1" stop-color="#3b82f6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Animated Brand Title -->
+      <h2 class="preloader-title">CombinedTution<span class="preloader-dot">.</span></h2>
+      <p class="preloader-subtitle">Bangladesh's Top Verified Mentors Network</p>
+
+      <!-- Sleek Progress Bar -->
+      <div class="preloader-progress-wrap">
+        <div class="preloader-progress-info">
+          <span>Loading</span>
+          <span class="preloader-progress-pct" id="preloaderPct">0%</span>
+        </div>
+        <div class="preloader-track">
+          <div class="preloader-bar" id="preloaderBar"></div>
+        </div>
+      </div>
+
+      <!-- Live Loading Status Message -->
+      <div class="preloader-status">
+        <span class="preloader-spinner-dot"></span>
+        <span id="preloaderStatusText">Connecting to academic network...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Sticky Navigation -->
+  <header class="header-container">
+    <nav class="navbar" id="navbar">
+      <!-- Far Left: Logo & Desktop Brand Text -->
+      <div class="nav-left">
+        <a href="index.html" class="brand-logo" title="Combined Tuition">
+          <img src="images/logo.jpeg" alt="Combined Tuition Logo" class="brand-logo-img" />
+          <span class="brand-text desktop-brand-text">CombinedTution<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+
+      <!-- Center: 'Combined Tuition' Text ONLY on Mobile Phone -->
+      <div class="nav-center mobile-only-brand">
+        <a href="index.html" class="brand-title-link" title="Combined Tuition">
+          <span class="brand-text">Combined Tuition<span class="brand-dot">.</span></span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <ul class="nav-menu">
+          <li><a href="jobs.html" class="nav-link">Job Board</a></li>
+          <li><a href="why-combined.html" class="nav-link">Why Combined</a></li>
+          <li><a href="how-it-works.html" class="nav-link">How it Works</a></li>
+          <li><a href="become-a-tutor.html" class="nav-link">Become a Tutor</a></li>
+        </ul>
+
+        <!-- Admin & Tutor Management Dropdown (Only dropdown visible when logged in as admin) -->
+        <div class="nav-dash-dropdown-wrap hidden" id="navDashDropdownWrap">
+          <button type="button" class="nav-dash-dropdown-btn" id="navDashDropdownBtn" aria-expanded="false"
+            onclick="window.toggleNavDashDropdown(event)">
+            <span class="btn-badge-admin"></span>
+            <i data-lucide="shield-check" style="width: 15px; height: 15px; color: #e11d48;"></i>
+            <span>Admin Panel</span>
+            <i data-lucide="chevron-down" class="chevron-icon"></i>
+          </button>
+          <div class="nav-dash-dropdown-menu" id="navDashDropdownMenu">
+            <div class="nav-dash-dropdown-header">Navigation Desks</div>
+            <a href="tutor-dashboard.html" class="nav-dash-item tutor-item" id="dropdownTutorDeskLink">
+              <div class="nav-dash-icon tutor-icon">
+                <i data-lucide="layout-dashboard"></i>
+              </div>
+              <div class="nav-dash-details">
+                <span class="nav-dash-title">Tutor Desk</span>
+                <span class="nav-dash-subtitle">Requests & schedules</span>
+              </div>
+            </a>
+            <a href="admin-dashboard.html" class="nav-dash-item admin-item" id="dropdownAdminHubLink">
+              <div class="nav-dash-icon admin-icon">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <div class="nav-dash-details">
+                <span class="nav-dash-title">Admin Hub</span>
+                <span class="nav-dash-subtitle">Platform governance</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Standalone Tutor Desk Button (visible only when logged in as Tutor) -->
+        <a href="tutor-dashboard.html" class="btn btn-secondary hidden" id="navTutorDashBtn"
+          style="border-color: #7c3aed; color: #7c3aed; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: 9999px;">
+          <i data-lucide="layout-dashboard" class="btn-icon"></i>
+          <span>Tutor Desk</span>
+        </a>
+        <a href="admin-dashboard.html" class="btn btn-secondary hidden" id="navAdminDashBtn"
+          style="border-color: #f43f5e; color: #e11d48; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: 9999px;">
+          <i data-lucide="shield-check" class="btn-icon"></i>
+          <span>Admin Hub</span>
+        </a>
+
+
+
+        <a href="login.html" class="btn btn-primary" id="openLoginModalBtn">
+          <i data-lucide="log-in" class="btn-icon"></i>
+          <span>Login</span>
+        </a>
+        <button class="menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"
+          onclick="window.toggleMobileDrawer(event)">
+          <i data-lucide="menu" id="menuOpenIcon"></i>
+          <i data-lucide="x" id="menuCloseIcon" class="hidden"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-links">
+        <a href="become-a-tutor.html" class="mobile-nav-item">BECOME A TUTOR</a>
+        <a href="why-combined.html" class="mobile-nav-item">WHY COMBINED</a>
+        <a href="jobs.html" class="mobile-nav-item">JOB BOARD</a>
+        <a href="how-it-works.html" class="mobile-nav-item">HOW IT WORKS</a>
+        <a href="tutor-dashboard.html" class="mobile-nav-item" id="mobileTutorDashBtn"
+          style="color: #7c3aed !important; font-weight: 800; display: flex; align-items: center; gap: 0.55rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="7" height="9" x="3" y="3" rx="1" />
+            <rect width="7" height="5" x="14" y="3" rx="1" />
+            <rect width="7" height="9" x="14" y="12" rx="1" />
+            <rect width="7" height="5" x="3" y="16" rx="1" />
+          </svg>
+          <span>TUTOR DESK</span>
+        </a>
+        <a href="admin-dashboard.html" class="mobile-nav-item" id="mobileAdminDashBtn"
+          style="color: #e11d48 !important; font-weight: 800; display: flex; align-items: center; gap: 0.55rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+          <span>ADMIN HUB</span>
+        </a>
+        <div class="mobile-drawer-btn">
+          <a href="login.html" class="btn btn-primary w-full mobile-login-btn" id="mobileLoginBtn">LOGIN</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    window.toggleMobileDrawer = function (e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      var toggleBtn = document.getElementById("mobileMenuToggle");
+      var drawer = document.getElementById("mobileDrawer");
+      if (!drawer) return;
+
+      var isOpen = drawer.classList.toggle("active");
+      if (toggleBtn) {
+        toggleBtn.classList.toggle("active", isOpen);
+        toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      }
+
+      var openIcon = document.getElementById("menuOpenIcon");
+      var closeIcon = document.getElementById("menuCloseIcon");
+      if (openIcon && closeIcon) {
+        openIcon.classList.toggle("hidden", isOpen);
+        closeIcon.classList.toggle("hidden", !isOpen);
+      }
+    };
+  </script>
+
+  <!-- SPA Application Main Container -->
+  <main id="spaAppView" class="spa-view-container">
+    <!-- View: Home -->
+    <div id="view-home" class="spa-view active" data-title="CombinedTution | Trusted Home & Batch Tuition Matching">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+
+        <div class="container hero-container">
+          <!-- Live Verified Status Pill -->
+          <div class="badge-pill">
+            <span class="pulse-wrapper">
+              <span class="pulse-ring"></span>
+              <span class="pulse-dot"></span>
+            </span>
+            <span class="badge-text">Trusted by 50000 guardians & 15000+ educators across Bangladesh</span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="hero-title">
+            Find the right tutor. <br />
+            <span class="text-gradient">Learn.Grow.Succeed</span>
+          </h1>
+
+
+
+
+
+          <!-- Featured Action Cards: 'Hire a Tutor' & 'Become a Tutor' -->
+          <div class="hero-action-cards-container">
+            <!-- Featured 'Hire a Tutor' Card (Porao UI Style) -->
+            <div class="CombinedTution-hire-tutor-card" id="CombinedTutionHireTutorCard" role="button" tabindex="0"
+              title="Hire a Tutor - Verified Mentors">
+              <div class="hire-card-avatar-wrap">
+                <img src="images/hire_tutor_avatar.jpg" alt="Hire a Tutor" class="hire-card-avatar-img" />
+              </div>
+              <div class="hire-card-content">
+                <h3 class="hire-card-title">Hire a Tutor <span class="hire-card-en"></span></h3>
+                <p class="hire-card-sub">Class with verified tutors</p>
+              </div>
+              <div class="hire-card-arrow-wrap">
+                <i data-lucide="arrow-right" class="hire-card-arrow-icon"></i>
+              </div>
+            </div>
+
+            <!-- Featured 'Become a Tutor' Card -->
+            <a href="become-a-tutor.html" class="CombinedTution-become-tutor-card" id="CombinedTutionBecomeTutorCard"
+              title="Become a Tutor - Join our educator community">
+              <div class="become-card-avatar-wrap">
+                <img src="images/become_tutor_avatar.jpg" alt="Become a Tutor" class="become-card-avatar-img" />
+              </div>
+              <div class="become-card-content">
+                <h3 class="become-card-title">Become a Tutor <span class="become-card-en"></span></h3>
+                <p class="become-card-sub">Join our educator community.</p>
+              </div>
+              <div class="become-card-arrow-wrap">
+                <i data-lucide="arrow-right" class="become-card-arrow-icon"></i>
+              </div>
+            </a>
+          </div>
+
+          <!-- Quick Account Access Prompt -->
+          <div class="hero-auth-prompt"
+            style="margin-top: 1.25rem; font-size: 0.9rem; color: var(--slate-600); display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span>Already a member?</span>
+            <a href="login.html"
+              style="color: var(--primary); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem;">
+              <i data-lucide="log-in" style="width: 1rem; height: 1rem;"></i>
+              <span>Log In</span>
+            </a>
+            <span style="color: var(--slate-300);">•</span>
+            <span>New user?</span>
+            <a href="register.html"
+              style="color: var(--primary); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem;">
+              <i data-lucide="user-plus" style="width: 1rem; height: 1rem;"></i>
+              <span>Register</span>
+            </a>
+          </div>
+
+
+          <!-- Quick Platform Stats Counter -->
+          <div class="hero-stats">
+            <div class="stat-card">
+              <h2 class="stat-number" data-target="100000">100k+</h2>
+              <p class="stat-label">Verified Educators</p>
+            </div>
+            <div class="stat-card">
+              <h2 class="stat-number" data-target="200000">200k+</h2>
+              <p class="stat-label">Successful Sessions</p>
+            </div>
+            <div class="stat-card">
+              <h2 class="stat-number" data-target="20000">20k+</h2>
+              <p class="stat-label">Satisfied Families</p>
+            </div>
+            <div class="stat-card">
+              <h2 class="stat-number" data-target="5">5</h2>
+              <p class="stat-label">Divisions Covered</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- Featured Tutors Section -->
+      <section class="section-directory" id="tutors-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-badge">VERIFIED EDUCATORS</span>
+            <h2 class="section-title">Learn from Exceptional Minds</h2>
+            <p class="section-subtitle">Hand-picked, background-verified educators from BUET, DU, Medical Colleges, and
+              leading universities ready to guide your child to academic excellence.</p>
+          </div>
+
+          <!-- Tutors Grid -->
+          <div class="tutors-grid" id="tutorsGrid">
+            <!-- Rendered dynamically via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Tuition Jobs Spotlight Section (Links to dedicated jobs.html) -->
+      <section class="section-jobs-spotlight" id="jobs-section">
+        <div class="container">
+          <div class="spotlight-header">
+            <div>
+              <span class="section-badge"><i data-lucide="sparkles" class="badge-icon"></i> ACTIVE ACADEMIC
+                REQUESTS</span>
+              <h2 class="section-title">Latest Tuition Openings in Dhaka</h2>
+              <p class="section-subtitle">Families across Dhaka are connecting with trusted mentors daily. Discover
+                verified
+                teaching opportunities matched to your neighborhood.</p>
+            </div>
+            <div class="spotlight-header-actions">
+              <a href="jobs.html" class="btn btn-primary">
+                <span>Explore Live Job Board</span>
+                <i data-lucide="arrow-right" class="btn-icon"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Spotlight Job Cards Grid -->
+          <div class="spotlight-jobs-grid" id="spotlightJobsGrid">
+            <!-- Injected via JavaScript -->
+          </div>
+
+          <!-- Callout Banner to Full Job Board -->
+          <div class="jobboard-banner-cta">
+            <div class="cta-banner-text">
+              <h3>Searching for tuition jobs within walking distance?</h3>
+              <p>Our dedicated Tuition Job Board includes interactive distance radius filters, curriculum tags, and
+                direct
+                guardian matching.</p>
+            </div>
+            <div class="cta-banner-btns">
+              <a href="jobs.html" class="btn btn-primary btn-lg">
+                <i data-lucide="briefcase" class="btn-icon"></i>
+                <span>Browse All Tuition Jobs</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Tutoriaa Section (Modeled on tutoriaa.com/why-tutoriaa) -->
+      <section class="about-section" id="about-section">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-content">
+              <span class="section-badge">BEYOND TUTORING</span>
+              <h2 class="about-title">Why thousands choose <br /><span class="text-gradient font-italic">CombinedTution
+                  every
+                  day.</span></h2>
+              <p class="about-desc">
+                We're not just a platform; we're a bridge to your academic success. Discover the advantage that makes us
+                Bangladesh's most trusted tutoring network.
+              </p>
+
+              <div class="why-trust-pill-box">
+                <div class="avatar-stack">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=120" alt="Parent 1"
+                    class="stack-img" />
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=120" alt="Parent 2"
+                    class="stack-img" />
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=120" alt="Parent 3"
+                    class="stack-img" />
+                  <div class="avatar-stack-more">+50k</div>
+                </div>
+                <div class="trust-pill-text">
+                  <div class="stars-row">
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                  </div>
+                  <p>Trusted by <strong class="text-violet">50,000+</strong> happy parents</p>
+                </div>
+              </div>
+
+              <div class="about-quote-box">
+                <p class="quote-title">Making quality education accessible for every learner.</p>
+                <p class="quote-desc">We help students discover educators who match their goals, schedule, and preferred
+                  learning style without endless scrolling on untrusted social channels.</p>
+              </div>
+            </div>
+
+            <div class="about-visual">
+              <div class="visual-card-center">
+                <div class="avatar-center">
+                  <i data-lucide="graduation-cap"></i>
+                </div>
+                <!-- Orbiting Badges -->
+                <div class="orbit-item orbit-1">
+                  <i data-lucide="shield-check"></i>
+                  <span>100% Verified Profile</span>
+                </div>
+                <div class="orbit-item orbit-2">
+                  <i data-lucide="map-pin"></i>
+                  <span>Local Proximity Match</span>
+                </div>
+                <div class="orbit-item orbit-3">
+                  <i data-lucide="star"></i>
+                  <span>4.5 / 5.0 Rating</span>
+                </div>
+                <div class="orbit-item orbit-4">
+                  <i data-lucide="award"></i>
+                  <span>BUET / DU / Medical</span>
+                </div>
+                <div class="orbit-ring ring-inner"></div>
+                <div class="orbit-ring ring-outer"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 Core Advantage Pillars (From tutoriaa.com/why-tutoriaa) -->
+          <div class="why-advantages-header text-center">
+            <span class="section-badge">THE ADVANTAGE</span>
+            <h3 class="section-title">Built for Trust, Speed & Academic Excellence</h3>
+            <p class="section-subtitle">Here is why guardians and educators choose our community over traditional
+              unverified
+              tuition media.</p>
+          </div>
+
+          <div class="why-pillars-grid">
+            <!-- 1. Trusted Network -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-emerald-light">
+                <i data-lucide="shield-check" class="text-emerald"></i>
+              </div>
+              <h4>Trusted Network</h4>
+              <p>We have built a community of thousands of verified tutors and students who trust us for their academic
+                needs with strict NID & student ID verification.</p>
+            </div>
+
+            <!-- 2. Smart Matching -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-blue-light">
+                <i data-lucide="target" class="text-blue"></i>
+              </div>
+              <h4>Smart Matching</h4>
+              <p>Our advanced algorithm matches students with the most suitable tutors based on subjects, curriculum
+                (Bangla/English Version/Edexcel), location, and specific goals.</p>
+            </div>
+
+            <!-- 3. Wide Coverage -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-orange-light">
+                <i data-lucide="map-pin" class="text-orange"></i>
+              </div>
+              <h4>Wide Coverage</h4>
+              <p>Whether you are in Dhanmondi, Gulshan, Uttara, Mirpur, Chattogram, or remote areas, we connect you with
+                learning opportunities everywhere.</p>
+            </div>
+
+            <!-- 4. Instant Updates -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-amber-light">
+                <i data-lucide="zap" class="text-amber"></i>
+              </div>
+              <h4>Instant Updates</h4>
+              <p>Get notified immediately via SMS and WhatsApp when a new tuition job or a perfect tutor match is
+                available
+                within your commute radius.</p>
+            </div>
+
+            <!-- 5. Quality Assurance -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-violet-light">
+                <i data-lucide="award" class="text-violet"></i>
+              </div>
+              <h4>Quality Assurance</h4>
+              <p>We maintain high standards by verifying profiles, screening academic credentials, and collecting
+                guardian
+                feedback after trial classes.</p>
+            </div>
+
+            <!-- 6. Supportive Community -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-indigo-light">
+                <i data-lucide="users" class="text-indigo"></i>
+              </div>
+              <h4>Supportive Community</h4>
+              <p>Join a growing family of over 150,000+ educators and learners dedicated to academic excellence,
+                continuous
+                mentorship, and mutual growth.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process / How It Works Section -->
+      <section class="process-section" id="process-section">
+        <div class="container">
+          <div class="process-grid">
+            <div class="process-intro">
+              <span class="section-badge">SEAMLESS ONBOARDING</span>
+              <h2 class="section-title text-left">
+                Finding your perfect mentor <br />
+                <span class="text-violet font-italic">is simple, safe & transparent.</span>
+              </h2>
+              <p class="section-desc">
+                Forget disorganized social media groups and unverified posts. CombinedTution connects caring parents and
+                qualified educators on a verified, structured platform with zero stress.
+              </p>
+              <div class="process-cta-box">
+                <p>Ready to start learning this week?</p>
+                <button class="btn btn-primary" id="processFindTutorBtn">Request a Tutor Now</button>
+              </div>
+            </div>
+
+            <div class="process-timeline">
+              <div class="timeline-line"></div>
+
+              <div class="timeline-step">
+                <div class="step-badge">1</div>
+                <div class="step-content">
+                  <h3 class="step-title">Share Your Needs <span class="step-check"><i
+                        data-lucide="badge-check"></i></span>
+                  </h3>
+                  <p class="step-desc">Tell us your student's class, curriculum (Bangla/English Medium), preferred
+                    subjects,
+                    and location in 2 minutes.</p>
+                </div>
+              </div>
+
+              <div class="timeline-step">
+                <div class="step-badge">2</div>
+                <div class="step-content">
+                  <h3 class="step-title">Get Matched in 24 Hours</h3>
+                  <p class="step-desc">We recommend top verified candidates from BUET, DU, and Medical Colleges screened
+                    specifically for your requirements.</p>
+                </div>
+              </div>
+
+              <div class="timeline-step">
+                <div class="step-badge">3</div>
+                <div class="step-content">
+                  <h3 class="step-title">Free Demo Session</h3>
+                  <p class="step-desc">Take a 1-day free trial class to experience teaching chemistry and ensure 100%
+                    satisfaction before finalizing.</p>
+                </div>
+              </div>
+
+              <div class="timeline-step">
+                <div class="step-badge">4</div>
+                <div class="step-content">
+                  <h3 class="step-title">Achieve Dream Grades 🎉</h3>
+                  <p class="step-desc">Begin regular sessions with ongoing support from our academic coordination team
+                    for
+                    complete peace of mind.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison Section: Students vs Tutors -->
+      <section class="dual-value-section">
+        <div class="container">
+          <div class="dual-grid">
+            <!-- For Students & Parents -->
+            <div class="value-card value-students">
+              <div class="value-tag tag-indigo">For Students & Parents</div>
+              <h3 class="value-heading">Unlock Academic Confidence</h3>
+              <ul class="value-checklist">
+                <li>
+                  <i data-lucide="check-circle-2" class="icon-indigo"></i>
+                  <span>Connect with verified top university tutors tailored to your child's learning pace.</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle-2" class="icon-indigo"></i>
+                  <span>100% background and academic credential verification for complete family safety.</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle-2" class="icon-indigo"></i>
+                  <span>Free replacement guarantee if the tutor is not the perfect fit after the demo.</span>
+                </li>
+              </ul>
+              <button class="btn btn-outline-indigo" id="dualFindTutorBtn">Post Tutor Request</button>
+            </div>
+
+            <!-- For Tutors -->
+            <div class="value-card value-tutors">
+              <div class="value-tag tag-violet">For Educators & Mentors</div>
+              <h3 class="value-heading">Teach with Purpose & Pride</h3>
+              <ul class="value-checklist">
+                <li>
+                  <i data-lucide="check-circle-2" class="icon-violet"></i>
+                  <span>Build an accredited tutoring profile that showcases your university achievements.</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle-2" class="icon-violet"></i>
+                  <span>Find tuition jobs within your neighborhood radius and eliminate long commute times.</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle-2" class="icon-violet"></i>
+                  <span>Direct, transparent remuneration from guardians with zero ongoing monthly platform cuts.</span>
+                </li>
+              </ul>
+              <button class="btn btn-outline-violet" id="dualBecomeTutorBtn">Join as a Mentor</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Infinite Marquee -->
+      <section class="testimonials-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <div class="badge-pill mini-badge">
+              <span class="badge-text">50,000+ Inspiring Stories</span>
+            </div>
+            <h2 class="section-title">Voices of Real Academic Growth</h2>
+            <p class="section-subtitle">Hear genuine reflections from parents, students, and educators whose lives have
+              been
+              transformed through CombinedTution.</p>
+          </div>
+        </div>
+
+        <!-- Marquee Rows -->
+        <div class="marquee-wrapper">
+          <div class="marquee-fade-left"></div>
+          <div class="marquee-fade-right"></div>
+
+          <!-- Row 1: Left to Right -->
+          <div class="marquee-track track-forward" id="marqueeTrack1">
+            <!-- Injected via JavaScript -->
+          </div>
+
+          <!-- Row 2: Right to Left -->
+          <div class="marquee-track track-reverse" id="marqueeTrack2">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Big Dark Purple CTA Banner -->
+      <section class="banner-section">
+        <div class="container">
+          <div class="cta-banner">
+            <div class="cta-top">
+              <div class="avatar-stack">
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=120" alt="Avatar 1"
+                  class="stack-img">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120" alt="Avatar 2"
+                  class="stack-img">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=120" alt="Avatar 3"
+                  class="stack-img">
+              </div>
+              <div class="rating-info">
+                <div class="stars-row">
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                </div>
+                <span class="rating-text">Over 50,000 satisfied families across Bangladesh</span>
+              </div>
+            </div>
+
+            <h2 class="cta-title">Give your child the mentorship they deserve.</h2>
+            <p class="cta-subtitle">Your child's next inspiring mentor is just one click away.</p>
+
+            <button class="btn btn-banner" id="bannerCtaBtn">
+              <span>Find Your Mentor Today</span>
+              <i data-lucide="arrow-right" class="btn-icon"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- View: Tuition Job Board -->
+    <div id="view-jobs" class="spa-view" data-title="Tuition Job Board | CombinedTution">
+      <!-- Main Job Board Content Section -->
+      <section class="section-jobboard-standalone">
+        <div class="container">
+          <!-- Quick Area Chips Bar -->
+          <div class="location-chips-bar">
+            <span class="chips-label"><i data-lucide="map-pin"></i> Popular Areas:</span>
+            <div class="chips-list">
+              <button class="chip-btn active" data-area="all">All Dhaka</button>
+              <button class="chip-btn" data-area="Dhanmondi">Dhanmondi</button>
+              <button class="chip-btn" data-area="Gulshan">Gulshan / Banani</button>
+              <button class="chip-btn" data-area="Uttara">Uttara</button>
+              <button class="chip-btn" data-area="Mirpur">Mirpur</button>
+              <button class="chip-btn" data-area="Bashundhara">Bashundhara R/A</button>
+              <button class="chip-btn" data-area="Mohammadpur">Mohammadpur</button>
+            </div>
+          </div>
+
+          <!-- Live Search & Radius Distance Bar -->
+          <div class="job-search-bar">
+            <div class="search-input-group">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" id="jobSearchInput" placeholder="" />
+              <button class="clear-search-btn hidden" id="clearJobSearchBtn"><i data-lucide="x"></i></button>
+            </div>
+
+            <div class="search-radius-group">
+              <i data-lucide="compass" class="search-icon"></i>
+              <label for="distanceRadiusSelect">Distance:</label>
+              <select id="distanceRadiusSelect">
+                <option value="1">Within 1 km</option>
+                <option value="3" selected>Within 3 km</option>
+                <option value="5">Within 5 km</option>
+                <option value="10">Within 10 km</option>
+                <option value="15">Within 15 km</option>
+                <option value="all">Any Distance</option>
+              </select>
+            </div>
+
+            <div class="search-sort-group">
+              <i data-lucide="arrow-up-down" class="search-icon"></i>
+              <label for="jobSortSelect">Sort:</label>
+              <select id="jobSortSelect">
+                <option value="newest">Latest Posted</option>
+                <option value="salary-high">Highest Salary</option>
+                <option value="nearest">Nearest to You</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dual Column Layout: Sidebar Filters + Job Stream -->
+          <div class="jobboard-layout">
+            <!-- Sticky Sidebar Filter Panel -->
+            <aside class="job-sidebar">
+              <div class="sidebar-box">
+                <!-- Feed Selector Switcher Bar (Small Rectangular Shape inside Filter Sidebar) -->
+                <div class="job-feed-tabs-bar" id="jobFeedTabsBar">
+                  <button class="feed-tab-btn active" id="feedTabTuitions"
+                    onclick="window.switchJobBoardFeed('tuitions')">
+                    <div class="feed-tab-left">
+                      <i data-lucide="briefcase"></i>
+                      <span>Tuition Jobs Feed</span>
+                    </div>
+                    <span class="feed-tab-badge" id="tuitionsCountBadge">0</span>
+                  </button>
+                  <button class="feed-tab-btn" id="feedTabTutors" onclick="window.switchJobBoardFeed('tutors')">
+                    <div class="feed-tab-left">
+                      <i data-lucide="graduation-cap"></i>
+                      <span>Verified Tutors</span>
+                    </div>
+                    <span class="feed-tab-badge" id="tutorsCountBadge">0</span>
+                  </button>
+                </div>
+
+                <div class="sidebar-header">
+                  <h3><i data-lucide="sliders" class="sidebar-icon"></i> Filter Results</h3>
+                  <button class="btn-reset-filters" id="jobResetFiltersBtn">Clear All</button>
+                </div>
+
+                <!-- Job Type -->
+                <div class="sidebar-group">
+                  <label class="filter-heading">Job Type</label>
+                  <div class="filter-radio-list">
+                    <label class="radio-label">
+                      <input type="radio" name="filterJobType" value="all" checked />
+                      <span>All Job Types</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="filterJobType" value="Home Tuition" />
+                      <span>Home Tuition</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="filterJobType" value="Online" />
+                      <span>Online Tuition</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="filterJobType" value="Institutional" />
+                      <span>Institutional</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Curriculum / Medium -->
+                <div class="sidebar-group">
+                  <label class="filter-heading" for="filterMediumSelect">Curriculum / Medium</label>
+                  <select id="filterMediumSelect" class="sidebar-select">
+                    <option value="all">All Mediums</option>
+                    <option value="Bangla Medium">Bangla Medium</option>
+                    <option value="English Version">English Version (National)</option>
+                    <option value="English Medium">English Medium (Cambridge / Edexcel)</option>
+                    <option value="Madrasa">Madrasa / Religious</option>
+                  </select>
+                </div>
+
+                <!-- Class & Grade -->
+                <div class="sidebar-group">
+                  <label class="filter-heading" for="filterClassSelect">Class & Grade</label>
+                  <select id="filterClassSelect" class="sidebar-select">
+                    <option value="all">All Classes</option>
+                    <option value="Class 1-5">Class 1 - 5 (Primary)</option>
+                    <option value="Class 6-8">Class 6 - 8 (Junior)</option>
+                    <option value="Class 9-10">Class 9 - 10 / SSC</option>
+                    <option value="HSC">Class 11 - 12 / HSC</option>
+                    <option value="O Level">O Level (Cambridge/Edexcel)</option>
+                    <option value="A Level">A Level (Cambridge/Edexcel)</option>
+                    <option value="Admission">University Admission</option>
+                  </select>
+                </div>
+
+                <!-- Tutor Gender Preference -->
+                <div class="sidebar-group">
+                  <label class="filter-heading" for="filterGenderSelect">Tutor Gender Preference</label>
+                  <select id="filterGenderSelect" class="sidebar-select">
+                    <option value="all">Any Gender</option>
+                    <option value="Male Tutor Preferred">Male Preferred</option>
+                    <option value="Female Tutor Preferred">Female Preferred</option>
+                  </select>
+                </div>
+
+                <!-- Monthly Remuneration Chips -->
+                <div class="sidebar-group">
+                  <label class="filter-heading">Monthly Remuneration</label>
+                  <div class="filter-salary-tags" id="salaryFilterTags">
+                    <button class="salary-chip active" data-salary="all">All</button>
+                    <button class="salary-chip" data-salary="under-6000">Up to ৳6k</button>
+                    <button class="salary-chip" data-salary="6000-9000">৳6k - ৳9k</button>
+                    <button class="salary-chip" data-salary="9000-12000">৳9k - ৳12k</button>
+                    <button class="salary-chip" data-salary="12000-plus">৳12k+</button>
+                  </div>
+                </div>
+
+                <!-- Instant Alerts Promo Box -->
+                <div class="sidebar-promo">
+                  <div class="promo-icon"><i data-lucide="bell"></i></div>
+                  <h4>Instant Tuition Alerts</h4>
+                  <p>Receive WhatsApp and SMS notifications when a new matching tuition is posted nearby.</p>
+                  <button class="btn btn-dark w-full btn-sm" id="subscribeAlertsBtn">
+                    <i data-lucide="bell-ring" class="btn-icon"></i>
+                    <span>Get Instant Alerts</span>
+                  </button>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Right Main Feed -->
+            <main class="job-feed-area">
+              <div class="feed-status-bar">
+                <div class="status-left">
+                  <span class="active-dot"></span>
+                  <span class="feed-count-text" id="jobResultsCount">Loading live tuition jobs...</span>
+                </div>
+                <div class="status-location-badge" id="currentLocationBadge">
+                  <i data-lucide="map-pin"></i>
+                  <span>Location: Dhaka Central (Lat: 23.7278, Lng: 90.4135)</span>
+                </div>
+              </div>
+
+              <!-- Live Job Listings Stream Container (Tuitions Feed) -->
+              <div class="job-cards-stream" id="jobCardsStream">
+                <!-- Dynamically populated via JS -->
+              </div>
+
+              <!-- Live Tutor Candidates Stream Container (Tutors Feed) -->
+              <div class="tutors-feed-grid hidden" id="tutorCardsStream">
+                <!-- Dynamically populated via JS -->
+              </div>
+
+              <!-- Job Board 6-Item Pagination Bar Component -->
+              <div class="job-pagination-wrap" id="jobBoardPagination">
+                <!-- Dynamically populated via JS -->
+              </div>
+
+              <!-- Post Tuition Banner at bottom of jobs -->
+              <div class="post-job-callout">
+                <div class="callout-left">
+                  <h3>Are you a Parent looking for a private tutor?</h3>
+                  <p>Post your requirements in 2 minutes. Our academic coordinator will match verified tutors with you.
+                  </p>
+                </div>
+                <button class="btn btn-primary btn-lg" id="bottomPostTuitionBtn">
+                  <span>Post a Tuition Request</span>
+                  <i data-lucide="arrow-right" class="btn-icon"></i>
+                </button>
+              </div>
+            </main>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- View: Why Combined -->
+    <div id="view-why-combined" class="spa-view" data-title="Why CombinedTution | Trusted Tuition Platform">
+      <!-- Hero Header for Why Combined -->
+      <section class="why-page-hero">
+        <div class="container">
+          <div class="why-hero-content text-center">
+            <div class="badge-pill mini-badge">
+              <span class="badge-text">COMMITTED TO EXCELLENCE</span>
+            </div>
+            <h1 class="why-page-title">
+              Why thousands of parents trust <br />
+              <span class="text-gradient font-italic">CombinedTution for their child's future.</span>
+            </h1>
+            <p class="why-page-subtitle">
+              Education is your child's greatest investment. We provide complete peace of mind through rigorous tutor
+              verification, personalized learning matches, and guaranteed academic progress.
+            </p>
+
+            <!-- Social Proof Trust Card -->
+            <div class="why-trust-card">
+              <div class="avatar-stack">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=120" alt="Parent 1"
+                  class="stack-img" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=120" alt="Parent 2"
+                  class="stack-img" />
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=120" alt="Parent 3"
+                  class="stack-img" />
+                <div class="avatar-stack-more">+50k</div>
+              </div>
+              <div class="trust-card-text">
+                <div class="stars-row">
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                  <i data-lucide="star" class="star-filled"></i>
+                </div>
+                <p>Trusted by over <strong class="text-violet">50,000+</strong> caring families</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 Core Advantage Cards Grid Section -->
+      <section class="why-pillars-section">
+        <div class="container">
+          <div class="why-pillars-grid">
+            <!-- 1. Trusted Network -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-emerald-light">
+                <i data-lucide="shield-check" class="text-emerald"></i>
+              </div>
+              <h4>100% Verified Credentials</h4>
+              <p>Every mentor undergoes strict government NID verification and university student identity screening
+                (BUET,
+                DU, DMC, NSU, BRAC) before entering your home.</p>
+            </div>
+
+            <!-- 2. Smart Matching -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-blue-light">
+                <i data-lucide="target" class="text-blue"></i>
+              </div>
+              <h4>Personalized Tutor Pairing</h4>
+              <p>We match your student with mentors who specialize in their specific curriculum (Bangla Medium, English
+                Version, Cambridge/Edexcel) and preferred learning speed.</p>
+            </div>
+
+            <!-- 3. Wide Coverage -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-orange-light">
+                <i data-lucide="map-pin" class="text-orange"></i>
+              </div>
+              <h4>Neighborhood Proximity</h4>
+              <p>Whether you reside in Dhanmondi, Gulshan, Uttara, Mirpur, Bashundhara, or beyond, we find top educators
+                located right in your neighborhood.</p>
+            </div>
+
+            <!-- 4. Instant Updates -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-amber-light">
+                <i data-lucide="zap" class="text-amber"></i>
+              </div>
+              <h4>Rapid 24-Hour Matching</h4>
+              <p>Receive handpicked tutor candidate profiles within 12 to 24 hours of posting your request, with instant
+                updates via SMS and WhatsApp.</p>
+            </div>
+
+            <!-- 5. Quality Assurance -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-violet-light">
+                <i data-lucide="award" class="text-violet"></i>
+              </div>
+              <h4>Risk-Free Trial & Replacement</h4>
+              <p>Take a 1-day free trial demo class to assess teaching style. If you are not completely satisfied, we
+                provide immediate replacement at no cost.</p>
+            </div>
+
+            <!-- 6. Supportive Community -->
+            <div class="why-pillar-card group">
+              <div class="pillar-icon bg-indigo-light">
+                <i data-lucide="users" class="text-indigo"></i>
+              </div>
+              <h4>Dedicated Academic Support</h4>
+              <p>Our experienced coordinators stay in touch throughout the tuition tenure to support scheduling, routine
+                adjustments, and student progress.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visual Matching & Story Section -->
+      <section class="why-story-section">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-content">
+              <span class="section-badge">STUDENT CENTRIC</span>
+              <h2 class="about-title">Every child deserves <span class="text-gradient">a mentor who truly cares.</span>
+              </h2>
+              <p class="about-desc">
+                Finding a private tutor in Bangladesh used to mean risking safety with unvetted social media posts.
+                CombinedTution transforms that experience into a structured, verified, and caring educational journey.
+              </p>
+
+              <div class="about-quote-box">
+                <p class="quote-title">Building lifelong academic confidence.</p>
+                <p class="quote-desc">We pair students with university scholars who not only teach formulas, but inspire
+                  curiosity, discipline, and effective study techniques.</p>
+              </div>
+
+              <div class="why-key-metrics-row">
+                <div class="metric-card">
+                  <h3>100%</h3>
+                  <p>NID & ID Verified</p>
+                </div>
+                <div class="metric-card">
+                  <h3>24 Hrs</h3>
+                  <p>Average Match Time</p>
+                </div>
+                <div class="metric-card">
+                  <h3>98.5%</h3>
+                  <p>Parent Approval Rate</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-visual">
+              <div class="visual-card-center">
+                <div class="avatar-center">
+                  <i data-lucide="graduation-cap"></i>
+                </div>
+                <!-- Orbiting Badges -->
+                <div class="orbit-item orbit-1">
+                  <i data-lucide="shield-check"></i>
+                  <span>100% Verified Profile</span>
+                </div>
+                <div class="orbit-item orbit-2">
+                  <i data-lucide="map-pin"></i>
+                  <span>Local Proximity Match</span>
+                </div>
+                <div class="orbit-item orbit-3">
+                  <i data-lucide="star"></i>
+                  <span>4.9 / 5.0 Rating</span>
+                </div>
+                <div class="orbit-item orbit-4">
+                  <i data-lucide="award"></i>
+                  <span>BUET / DU / Medical</span>
+                </div>
+                <div class="orbit-ring ring-inner"></div>
+                <div class="orbit-ring ring-outer"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Big Violet CTA Box -->
+      <section class="why-cta-section">
+        <div class="container">
+          <div class="why-cta-box">
+            <div class="why-cta-inner">
+              <h2 class="why-cta-title">Give your child the confidence to lead their class.</h2>
+              <p class="why-cta-subtitle">
+                Experience the CombinedTution difference today. Request a qualified mentor in less than 2 minutes.
+              </p>
+              <div class="why-cta-buttons">
+                <button class="btn btn-cta-white" id="whyFindTutorBtn">
+                  <i data-lucide="search" class="btn-icon"></i>
+                  <span>Request a Verified Tutor</span>
+                </button>
+                <button class="btn btn-cta-transparent" id="whyJoinTutorBtn">
+                  <i data-lucide="graduation-cap" class="btn-icon"></i>
+                  <span>Join as an Educator</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- View: How It Works -->
+    <div id="view-how-it-works" class="spa-view" data-title="How It Works | CombinedTution">
+      <!-- Hero Header -->
+      <section class="how-hero-section">
+        <div class="container">
+          <div class="how-hero-content text-center">
+            <div class="badge-pill mini-badge">
+              <span class="badge-text">SIMPLE & TRANSPARENT PROCESS</span>
+            </div>
+            <h1 class="how-hero-title">
+              The clear, reliable way to <br />
+              <span class="text-gradient">exceptional academic guidance.</span>
+            </h1>
+            <p class="how-hero-subtitle">
+              Designed with parents' peace of mind and students' growth at heart. Discover our safe, structured pathway
+              from
+              requirement to top exam performance.
+            </p>
+
+            <!-- Interactive Role Switcher Tabs -->
+            <div class="role-tab-switcher" role="tablist">
+              <button class="role-tab-btn active" id="tabParentsBtn" role="tab" aria-selected="true"
+                aria-controls="parentsFlowContent">
+                <i data-lucide="users"></i>
+                <span>For Guardians & Students</span>
+              </button>
+              <button class="role-tab-btn" id="tabTutorsBtn" role="tab" aria-selected="false"
+                aria-controls="tutorsFlowContent">
+                <i data-lucide="award"></i>
+                <span>For Educators & Mentors</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flow 1: Guardians & Students Workflow (Active by Default) -->
+      <section class="workflow-flow-section" id="parentsFlowContent">
+        <div class="container">
+          <div class="flow-header text-center">
+            <span class="section-tag">GUARDIAN JOURNEY</span>
+            <h2>A Stress-Free Experience for Every Family</h2>
+            <p>100% free consultation, strict background verification, and a risk-free trial demo class.</p>
+          </div>
+
+          <div class="steps-flow-grid">
+            <!-- Step 1 -->
+            <div class="flow-step-card">
+              <div class="flow-step-number">01</div>
+              <div class="flow-step-icon bg-violet-soft">
+                <i data-lucide="file-edit" class="text-violet"></i>
+              </div>
+              <h3>Share Your Learning Goals</h3>
+              <p>
+                Specify your student's class, curriculum (Bangla Medium, English Version, O/A Level), target subjects,
+                schedule, and budget in under 2 minutes.
+              </p>
+              <div class="flow-step-perk">
+                <i data-lucide="check-circle-2"></i>
+                <span>Fast & simple submission</span>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flow-step-card">
+              <div class="flow-step-number">02</div>
+              <div class="flow-step-icon bg-blue-soft">
+                <i data-lucide="user-check" class="text-blue"></i>
+              </div>
+              <h3>Top Verified Mentor Pairing</h3>
+              <p>
+                Our academic coordinators evaluate top educators from BUET, DU, and Medical Colleges near your area and
+                recommend the best-suited mentor.
+              </p>
+              <div class="flow-step-perk">
+                <i data-lucide="check-circle-2"></i>
+                <span>100% NID & Student ID Verified</span>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flow-step-card">
+              <div class="flow-step-number">03</div>
+              <div class="flow-step-icon bg-emerald-soft">
+                <i data-lucide="sparkles" class="text-emerald"></i>
+              </div>
+              <h3>Free Trial & Confident Start</h3>
+              <p>
+                Experience teaching compatibility through a 1-day free trial class. Confirm schedule and monthly fees
+                only
+                after you are 100% delighted.
+              </p>
+              <div class="flow-step-perk">
+                <i data-lucide="check-circle-2"></i>
+                <span>Free Replacement Guarantee</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guardian Benefits Row -->
+          <div class="benefits-row-box">
+            <div class="benefit-item">
+              <div class="benefit-icon"><i data-lucide="badge-percent"></i></div>
+              <div class="benefit-text">
+                <h4>100% Free for Parents</h4>
+                <p>We do not charge guardians any matching, registration, or placement fees.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon"><i data-lucide="shield-check"></i></div>
+              <div class="benefit-text">
+                <h4>Verified Family Safety</h4>
+                <p>Every tutor's national ID, university enrollment, and records are rigorously authenticated.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon"><i data-lucide="refresh-cw"></i></div>
+              <div class="benefit-text">
+                <h4>Guaranteed Compatibility</h4>
+                <p>If the tutor isn't the perfect fit, we provide immediate alternative matches at no extra cost.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-8">
+            <button class="btn btn-primary btn-lg" id="guardianHireTutorActionBtn">
+              <i data-lucide="graduation-cap" class="btn-icon"></i>
+              <span>Request a Verified Tutor Now</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flow 2: Tutors & Mentors Workflow (Hidden by Default, Toggled via JS) -->
+      <section class="workflow-flow-section hidden" id="tutorsFlowContent">
+        <div class="container">
+          <div class="flow-header text-center">
+            <span class="section-tag">TUTOR JOURNEY</span>
+            <h2>How tutors earn & teach with CombinedTution</h2>
+            <p>Access hundreds of live tuition posts in Dhaka with verified parent contact.</p>
+          </div>
+
+          <div class="steps-flow-grid">
+            <!-- Step 1 -->
+            <div class="flow-step-card">
+              <div class="flow-step-number">01</div>
+              <div class="flow-step-icon bg-orange-soft">
+                <i data-lucide="user-plus" class="text-orange"></i>
+              </div>
+              <h3>Create Verified Profile</h3>
+              <p>
+                Sign up with your university student ID, academic records, preferred teaching subjects, and local areas
+                (e.g. Dhanmondi, Gulshan, Uttara).
+              </p>
+              <div class="flow-step-perk">
+                <i data-lucide="check-circle-2"></i>
+                <span>Instant profile badge upon approval</span>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flow-step-card">
+              <div class="flow-step-number">02</div>
+              <div class="flow-step-icon bg-indigo-soft">
+                <i data-lucide="search" class="text-indigo"></i>
+              </div>
+              <h3>Browse & Apply for Tuitions</h3>
+              <p>
+                Filter hundreds of live tuition jobs by distance radius (1km to 15km), salary range, curriculum, and
+                class
+                level. Apply with 1 click.
+              </p>
+              <div class="flow-step-perk">
+                <i data-lucide="check-circle-2"></i>
+                <span>Instant SMS & WhatsApp alerts</span>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flow-step-card">
+              <div class="flow-step-number">03</div>
+              <div class="flow-step-icon bg-emerald-soft">
+                <i data-lucide="badge-dollar-sign" class="text-emerald"></i>
+              </div>
+              <h3>Demo Class & Start Earning</h3>
+              <p>
+                Provide an impactful demo class, establish your routine with the guardian, and receive direct monthly
+                salary
+                without ongoing platform cuts.
+              </p>
+              <div class="flow-step-perk">
+                <i data-lucide="check-circle-2"></i>
+                <span>Direct payments from guardians</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutor Benefits Row -->
+          <div class="benefits-row-box">
+            <div class="benefit-item">
+              <div class="benefit-icon"><i data-lucide="map-pin"></i></div>
+              <div class="benefit-text">
+                <h4>Radius Proximity Match</h4>
+                <p>Save travel time by finding tuition jobs within walking distance of your campus.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon"><i data-lucide="wallet"></i></div>
+              <div class="benefit-text">
+                <h4>Fair & Transparent</h4>
+                <p>No hidden deductions. Guaranteed direct payment terms agreed upfront.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon"><i data-lucide="star"></i></div>
+              <div class="benefit-text">
+                <h4>Build Your Reputation</h4>
+                <p>Earn 5-star guardian reviews and boost your profile visibility for higher-paying jobs.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-8">
+            <a href="become-a-tutor.html" class="btn btn-primary btn-lg">
+              <i data-lucide="award" class="btn-icon"></i>
+              <span>Apply to Become a Tutor</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Safety & Quality Guarantees Section -->
+      <section class="safety-guarantee-section">
+        <div class="container">
+          <div class="safety-grid">
+            <div class="safety-info">
+              <span class="section-tag">SECURITY & TRUST</span>
+              <h2>Our 4-Point Safety & Quality Standard</h2>
+              <p>
+                We take safety and educational quality seriously. Every interaction on CombinedTution is monitored by
+                our
+                dedicated academic operations team.
+              </p>
+
+              <div class="safety-checklist">
+                <div class="safety-check-item">
+                  <div class="check-icon"><i data-lucide="shield-alert"></i></div>
+                  <div>
+                    <h4>National ID & Student Card Screening</h4>
+                    <p>All educators submit valid government NID and official university identity cards prior to student
+                      contact.</p>
+                  </div>
+                </div>
+                <div class="safety-check-item">
+                  <div class="check-icon"><i data-lucide="user-check"></i></div>
+                  <div>
+                    <h4>Academic Background Verification</h4>
+                    <p>Transcript & HSC/A-Level grades are verified to match the subjects the mentor is assigned to
+                      teach.
+                    </p>
+                  </div>
+                </div>
+                <div class="safety-check-item">
+                  <div class="check-icon"><i data-lucide="phone-call"></i></div>
+                  <div>
+                    <h4>24/7 Coordinator Assistance</h4>
+                    <p>Have questions about schedule, payments, or demo feedback? Our coordinators are just a phone call
+                      away.</p>
+                  </div>
+                </div>
+                <div class="safety-check-item">
+                  <div class="check-icon"><i data-lucide="refresh-ccw"></i></div>
+                  <div>
+                    <h4>Zero-Cost Replacement Policy</h4>
+                    <p>If for any reason the match does not meet your expectations, we provide an alternate tutor at no
+                      extra cost.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="safety-visual-card">
+              <div class="safety-badge-header">
+                <div class="safety-icon-large">
+                  <i data-lucide="shield-check"></i>
+                </div>
+                <h3>100% Trust Guarantee</h3>
+                <p>Verified by CombinedTution Academic Board</p>
+              </div>
+              <div class="safety-stats-list">
+                <div class="safety-stat-box">
+                  <span class="stat-val">50,000+</span>
+                  <span class="stat-lbl">Families Served</span>
+                </div>
+                <div class="safety-stat-box">
+                  <span class="stat-val">150,000+</span>
+                  <span class="stat-lbl">Registered Mentors</span>
+                </div>
+                <div class="safety-stat-box">
+                  <span class="stat-val">4.9 / 5</span>
+                  <span class="stat-lbl">Parent Satisfaction</span>
+                </div>
+                <div class="safety-stat-box">
+                  <span class="stat-val">&lt; 24h</span>
+                  <span class="stat-lbl">Average Match Time</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Frequently Asked Questions Accordion -->
+      <section class="how-faq-section">
+        <div class="container faq-container">
+          <div class="text-center mb-8">
+            <span class="section-tag">GOT QUESTIONS?</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about the CombinedTution hiring and teaching process.</p>
+          </div>
+
+          <div class="accordion-group" id="faqAccordion">
+            <!-- Item 1 -->
+            <div class="accordion-item active">
+              <button class="accordion-trigger" aria-expanded="true">
+                <span>How much does it cost for guardians to find a tutor?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>Our tutor search and matching service is <strong>100% free</strong> for guardians and students. You
+                  only
+                  pay the agreed monthly tuition fee directly to the assigned tutor after your classes commence.</p>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>How do you verify tutor credentials?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>Every tutor must upload their National ID card (NID), valid university student ID (e.g. BUET, DU,
+                  DMC,
+                  NSU, BRAC), and educational certificates. Our verification team reviews and approves these before
+                  granting
+                  a verified badge.</p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>What happens if the student does not like the tutor after the demo class?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>You are under no obligation to continue. We provide a completely free tutor replacement, sending you
+                  alternative verified candidates within 24 hours until you are completely satisfied.</p>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>How fast can I get a tutor assigned?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>In most major areas of Dhaka (Dhanmondi, Gulshan, Uttara, Mirpur, Mohammadpur, Bashundhara), you will
+                  receive matching qualified tutor profiles within 12 to 24 hours of posting your requirement.</p>
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>How do tutors apply for tuition jobs?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>Registered tutors can browse our live Tuition Job Board (<a href="jobs.html"
+                    class="text-violet font-bold">jobs.html</a>), filter by distance radius, and click 'Apply Now'. Our
+                  team
+                  immediately contacts shortlisted candidates for the guardian demo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Big Violet Call To Action Banner -->
+      <section class="why-cta-section">
+        <div class="container">
+          <div class="why-cta-box">
+            <div class="why-cta-inner">
+              <h2 class="why-cta-title">Ready to experience hassle-free tutoring?</h2>
+              <p class="why-cta-subtitle">
+                Join thousands of parents and qualified tutors across Bangladesh achieving academic excellence together.
+              </p>
+              <div class="why-cta-buttons">
+                <a href="become-a-tutor.html" class="btn btn-cta-white">
+                  <i data-lucide="graduation-cap" class="btn-icon"></i>
+                  <span>Become a Tutor</span>
+                </a>
+                <button class="btn btn-cta-transparent" id="ctaPostTuitionBtn">
+                  <i data-lucide="search" class="btn-icon"></i>
+                  <span>Find a Tutor</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- View: Become a Tutor -->
+    <div id="view-become-a-tutor" class="spa-view" data-title="Become a Tutor | CombinedTution">
+      <!-- Hero Header for Become a Tutor -->
+      <section class="tutor-hero-section">
+        <div class="container">
+          <div class="tutor-hero-grid">
+            <div class="tutor-hero-text">
+              <div class="badge-pill mini-badge">
+                <span class="badge-text">JOIN AS A VERIFIED MENTOR</span>
+              </div>
+              <h1 class="tutor-hero-title">
+                Inspire the next generation. <br />
+                <span class="text-gradient">Earn with dignity and flexibility.</span>
+              </h1>
+              <p class="tutor-hero-subtitle">
+                Join over 150,000+ elite educators from BUET, DU, DMC, IBA, and top institutions. Connect with motivated
+                students near your campus, set your own schedule, and earn directly without recurring cuts.
+              </p>
+
+              <div class="tutor-hero-actions">
+                <a href="jobs.html" class="btn btn-secondary btn-lg">
+                  <i data-lucide="search" class="btn-icon"></i>
+                  <span>Explore 240+ Tuition Openings</span>
+                </a>
+              </div>
+
+              <!-- Tutor Stats Trust Badges -->
+              <div class="tutor-hero-stats-row">
+                <div class="tutor-stat-item">
+                  <h4>৳ 25,000+</h4>
+                  <p>Avg Monthly Income</p>
+                </div>
+                <div class="tutor-stat-item">
+                  <h4>150,000+</h4>
+                  <p>Registered Tutors</p>
+                </div>
+                <div class="tutor-stat-item">
+                  <h4>100%</h4>
+                  <p>Direct Parent Pay</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Tutor Earnings Calculator Section -->
+      <section class="earnings-calculator-section">
+        <div class="container">
+          <div class="calculator-card">
+            <div class="calculator-header text-center">
+              <span class="section-tag">EARNINGS ESTIMATOR</span>
+              <h2>Calculate your potential monthly income</h2>
+              <p>See how much you can earn teaching students near your location.</p>
+            </div>
+
+            <div class="calculator-body-grid">
+              <div class="calculator-controls">
+                <!-- Control 1: Teaching Grade Level -->
+                <div class="calc-control-group">
+                  <label class="calc-label">1. Student Class / Level</label>
+                  <div class="calc-chip-group" id="calcLevelChips">
+                    <button type="button" class="calc-chip" data-rate="4000">Class 1 - 5</button>
+                    <button type="button" class="calc-chip" data-rate="6000">Class 6 - 8</button>
+                    <button type="button" class="calc-chip active" data-rate="8000">SSC / Class 9-10</button>
+                    <button type="button" class="calc-chip" data-rate="10000">HSC / College</button>
+                    <button type="button" class="calc-chip" data-rate="13000">English Medium (O/A Level)</button>
+                  </div>
+                </div>
+
+                <!-- Control 2: Days per week -->
+                <div class="calc-control-group">
+                  <label class="calc-label">2. Days per Week (Per Tuition)</label>
+                  <div class="calc-chip-group" id="calcDaysChips">
+                    <button type="button" class="calc-chip" data-multiplier="0.8">2 Days / Week</button>
+                    <button type="button" class="calc-chip active" data-multiplier="1.0">3 Days / Week</button>
+                    <button type="button" class="calc-chip" data-multiplier="1.25">4 Days / Week</button>
+                    <button type="button" class="calc-chip" data-multiplier="1.5">5 Days / Week</button>
+                  </div>
+                </div>
+
+                <!-- Control 3: Number of tuitions slider -->
+                <div class="calc-control-group">
+                  <div class="calc-slider-header">
+                    <label class="calc-label">3. Number of Active Tuitions:</label>
+                    <span class="calc-slider-val" id="tuitionCountVal">3 Tuitions</span>
+                  </div>
+                  <input type="range" id="tuitionRangeInput" min="1" max="5" value="3" class="calc-slider" />
+                  <div class="slider-marks">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Output Box -->
+              <div class="calculator-output-card">
+                <span class="est-badge">ESTIMATED MONTHLY EARNINGS</span>
+                <div class="earnings-amount" id="calculatedEarningsDisplay">৳ 24,000</div>
+                <p class="earnings-subtext">Estimated net monthly income based on current Dhaka market rates</p>
+
+                <div class="calc-breakdown-list">
+                  <div class="breakdown-item">
+                    <span>Rate per Tuition:</span>
+                    <strong id="ratePerTuitionDisplay">৳ 8,000 / mo</strong>
+                  </div>
+                  <div class="breakdown-item">
+                    <span>Hours per Week:</span>
+                    <strong id="hoursPerWeekDisplay">9 Hours</strong>
+                  </div>
+                  <div class="breakdown-item">
+                    <span>Platform Commission:</span>
+                    <strong class="text-emerald font-bold">0% (Keep 100%)</strong>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary w-full mt-6" id="calcClaimIncomeBtn">
+                  <span>Start Earning This Month</span>
+                  <i data-lucide="arrow-right" class="btn-icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Teach on CombinedTution Grid -->
+      <section class="tutor-advantages-section">
+        <div class="container">
+          <div class="text-center mb-10">
+            <span class="section-tag">WHY TEACH WITH US</span>
+            <h2>The CombinedTution Advantage for Mentors</h2>
+            <p>Built by educators for educators with complete respect for your time and skills.</p>
+          </div>
+
+          <div class="tutor-advantages-grid">
+            <!-- 1 -->
+            <div class="advantage-card">
+              <div class="adv-icon bg-violet-soft">
+                <i data-lucide="map-pin" class="text-violet"></i>
+              </div>
+              <h3>Local Proximity Matches</h3>
+              <p>Find tuition jobs within 1 to 3 kilometers of your hall, hostel, or home. Less commute means more study
+                and
+                personal time.</p>
+            </div>
+
+            <!-- 2 -->
+            <div class="advantage-card">
+              <div class="adv-icon bg-emerald-soft">
+                <i data-lucide="badge-dollar-sign" class="text-emerald"></i>
+              </div>
+              <h3>100% Direct Payments</h3>
+              <p>Guardians pay you directly every month via bKash, Nagad, bank, or cash. No deductions or holding of
+                your
+                hard-earned fee.</p>
+            </div>
+
+            <!-- 3 -->
+            <div class="advantage-card">
+              <div class="adv-icon bg-blue-soft">
+                <i data-lucide="shield-check" class="text-blue"></i>
+              </div>
+              <h3>Verified Academic Profile</h3>
+              <p>Get an official verified badge showing your BUET, DU, Medical, or university credentials. Higher
+                credibility brings premium salary offers.</p>
+            </div>
+
+            <!-- 4 -->
+            <div class="advantage-card">
+              <div class="adv-icon bg-orange-soft">
+                <i data-lucide="zap" class="text-orange"></i>
+              </div>
+              <h3>Instant Job Notifications</h3>
+              <p>Receive SMS and WhatsApp alerts the moment a matching tuition post in your preferred subjects and
+                locations
+                goes live.</p>
+            </div>
+
+            <!-- 5 -->
+            <div class="advantage-card">
+              <div class="adv-icon bg-amber-soft">
+                <i data-lucide="clock" class="text-amber"></i>
+              </div>
+              <h3>Flexible Scheduling</h3>
+              <p>You decide which days and hours you can teach. Easily adjust routines during university term finals or
+                lab
+                exams.</p>
+            </div>
+
+            <!-- 6 -->
+            <div class="advantage-card">
+              <div class="adv-icon bg-indigo-soft">
+                <i data-lucide="headphones" class="text-indigo"></i>
+              </div>
+              <h3>Dedicated Coordinator Support</h3>
+              <p>Our academic coordinators manage initial guardian introductions, schedule alignments, and address any
+                concerns promptly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-Step Registration Journey -->
+      <section class="tutor-journey-section">
+        <div class="container">
+          <div class="text-center mb-10">
+            <span class="section-tag">EASY ONBOARDING</span>
+            <h2>Your 4-Step Journey to Becoming a Verified Tutor</h2>
+            <p>Simple, secure, and fast verification process.</p>
+          </div>
+
+          <div class="journey-steps-row">
+            <!-- Step 1 -->
+            <div class="journey-card">
+              <div class="journey-num">1</div>
+              <h4>Create Account</h4>
+              <p>Provide your phone number, university details, and preferred teaching subjects.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="journey-card">
+              <div class="journey-num">2</div>
+              <h4>Document Upload</h4>
+              <p>Upload a clear photo of your student ID card or NID for background verification.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="journey-card">
+              <div class="journey-num">3</div>
+              <h4>Get Verified</h4>
+              <p>Our verification team reviews your credentials and approves your profile within 12-24 hours.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="journey-card">
+              <div class="journey-num">4</div>
+              <h4>Apply & Start Teaching</h4>
+              <p>Browse the job board, apply with 1 click, give a demo class, and begin earning!</p>
+            </div>
+          </div>
+
+          <div class="text-center mt-10">
+            <button class="btn btn-primary btn-lg" id="journeyApplyBtn">
+              <i data-lucide="sparkles" class="btn-icon"></i>
+              <span>Begin Tutor Registration</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tutor Testimonials -->
+      <section class="tutor-testimonials-section">
+        <div class="container">
+          <div class="text-center mb-8">
+            <span class="section-tag">SUCCESS STORIES</span>
+            <h2>What Top Tutors Say About CombinedTution</h2>
+            <p>Real feedback from mentors teaching across Dhaka.</p>
+          </div>
+
+          <div class="tutor-reviews-grid">
+            <div class="review-box">
+              <div class="review-stars">
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+              </div>
+              <p class="review-text">"As a BUET CSE student, finding tuitions within 2 km of Palashi/Dhanmondi was a
+                game
+                changer. I manage 3 tuitions and earn ৳28,000 without disrupting my studies."</p>
+              <div class="reviewer-meta">
+                <div class="reviewer-avatar">TH</div>
+                <div>
+                  <h5>Tanvir Hasan</h5>
+                  <span>BUET CSE • Math & Physics Tutor</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-box">
+              <div class="review-stars">
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+              </div>
+              <p class="review-text">"The background verification makes parents trust you immediately. The demo class
+                was
+                arranged smoothly and I received my first payment on time directly from the guardian."</p>
+              <div class="reviewer-meta">
+                <div class="reviewer-avatar" style="background: var(--rose);">NJ</div>
+                <div>
+                  <h5>Nusrat Jahan</h5>
+                  <span>Dhaka Medical College • Biology Mentor</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-box">
+              <div class="review-stars">
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+                <i data-lucide="star" class="star-filled"></i>
+              </div>
+              <p class="review-text">"Tutoriaa / CombinedTution's distance filter is super accurate. I found an O-Level
+                accounting student just 10 minutes walking distance from my house in Uttara Sector 7."</p>
+              <div class="reviewer-meta">
+                <div class="reviewer-avatar" style="background: var(--indigo);">AC</div>
+                <div>
+                  <h5>Abrar Chowdhury</h5>
+                  <span>IBA, DU • English & Commerce</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tutor FAQ Section -->
+      <section class="how-faq-section">
+        <div class="container faq-container">
+          <div class="text-center mb-8">
+            <span class="section-tag">TUTOR FAQ</span>
+            <h2>Frequently Asked Questions for Tutors</h2>
+            <p>Everything you need to know about joining, applying, and teaching.</p>
+          </div>
+
+          <div class="accordion-group" id="tutorFaqAccordion">
+            <!-- Item 1 -->
+            <div class="accordion-item active">
+              <button class="accordion-trigger" aria-expanded="true">
+                <span>Is there any fee to register as a tutor?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>Registration and profile creation are completely free. You can create your profile, get verified, and
+                  browse all live tuition jobs at no cost.</p>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>Which documents do I need to submit for verification?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>You need to upload: (1) A photo of your National ID (NID) or Passport/Birth Certificate, and (2) Your
+                  University Student ID Card or admission receipt. This guarantees your profile gets the '100% Verified'
+                  badge.</p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>How do I receive payments from guardians?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>Guardians pay you directly every month according to the agreed schedule via bKash, Nagad, Bank
+                  Transfer,
+                  or Cash. CombinedTution does not hold your payments.</p>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>Can I teach both Online and Home Tuition?</span>
+                <i data-lucide="chevron-down" class="accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>Yes! You can specify your preference for In-person Home Tutoring, Online Live Tutoring, or both when
+                  applying for tuition jobs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Big Violet CTA Box -->
+      <section class="why-cta-section">
+        <div class="container">
+          <div class="why-cta-box">
+            <div class="why-cta-inner">
+              <h2 class="why-cta-title">Ready to start earning with top tuitions?</h2>
+              <p class="why-cta-subtitle">
+                Join thousands of university educators across Bangladesh. Submit your application in 2 minutes.
+              </p>
+              <div class="why-cta-buttons">
+                <button class="btn btn-cta-white" id="ctaApplyTutorBottomBtn">
+                  <i data-lucide="award" class="btn-icon"></i>
+                  <span>Apply as Tutor Now</span>
+                </button>
+                <a href="jobs.html" class="btn btn-cta-transparent">
+                  <i data-lucide="search" class="btn-icon"></i>
+                  <span>View Job Board</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- View: Contact Coordinator -->
+    <div id="view-contact-coordinator" class="spa-view" data-title="Contact Coordinator | CombinedTution">
+      <!-- Coordinator Page Hero Section -->
+      <section class="page-hero-compact"
+        style="background: linear-gradient(180deg, rgba(238, 242, 255, 0.8) 0%, rgba(255, 255, 255, 1) 100%);">
+        <div class="container text-center">
+          <div class="badge-pill">
+            <span class="pulse-wrapper">
+              <span class="pulse-ring"></span>
+              <span class="pulse-dot"></span>
+            </span>
+            <span class="badge-text">Direct Academic Support Desk</span>
+          </div>
+          <h1 class="page-hero-title">
+            Connect with Your <span class="text-gradient">Tuition Coordinator</span>
+          </h1>
+          <p class="page-hero-subtitle">
+            Have specific curriculum requirements, need guidance on tutor rates, or want a personalized tutor match? Our
+            senior coordinators are available 7 days a week from 9:00 AM to 10:00 PM.
+          </p>
+
+          <!-- Instant Channels Row -->
+          <div class="tutor-trust-row" style="margin-top: 1.5rem;">
+            <a href="tel:+8801711032847" class="trust-badge-item"
+              style="text-decoration: none; color: inherit; cursor: pointer;">
+              <i data-lucide="phone-call" style="color: var(--primary);"></i>
+              <span>Hotline: +88 01711 032847</span>
+            </a>
+            <a href="https://wa.me/8801885999922" target="_blank" class="trust-badge-item"
+              style="text-decoration: none; color: inherit; cursor: pointer;">
+              <i data-lucide="message-circle" style="color: #10b981;"></i>
+              <span>WhatsApp: +880 1885999922</span>
+            </a>
+            <div class="trust-badge-item">
+              <i data-lucide="clock" style="color: var(--primary);"></i>
+              <span>Response Time: Under 15 Minutes</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coordinator Services & Request Form Section -->
+      <section style="padding: 4rem 0 6rem; background-color: var(--slate-50);">
+        <div class="container">
+
+          <div style="display: grid; grid-template-columns: 1fr 1.25fr; gap: 3rem; align-items: flex-start;">
+
+            <!-- Left: Area Coordinators & Responsibilities -->
+            <div>
+              <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.75rem;">
+                Dedicated
+                Academic Desks</h3>
+              <p style="font-size: 0.95rem; color: var(--slate-600); margin-bottom: 2rem; line-height: 1.6;">
+                Each academic stream at CombinedTution is supervised by a dedicated coordinator to ensure verified
+                qualifications and smooth guardian communication.
+              </p>
+
+              <!-- Desk 1 -->
+              <div
+                style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; display: flex; gap: 1rem; align-items: flex-start; box-shadow: var(--shadow-sm);">
+                <div
+                  style="width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <i data-lucide="award"></i>
+                </div>
+                <div>
+                  <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.25rem;">
+                    Bangla
+                    & English Version Desk</h4>
+                  <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 0.5rem;">SSC, HSC, Science,
+                    Commerce
+                    & Arts syllabus matching from BUET, DU, and DMC tutors.</p>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">Coordinator: Engr. Shakil
+                    Ahmed</span>
+                </div>
+              </div>
+
+              <!-- Desk 2 -->
+              <div
+                style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; display: flex; gap: 1rem; align-items: flex-start; box-shadow: var(--shadow-sm);">
+                <div
+                  style="width: 2.75rem; height: 2.75rem; border-radius: 50%; background: rgba(59, 130, 246, 0.1); color: #2563eb; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <i data-lucide="globe"></i>
+                </div>
+                <div>
+                  <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.25rem;">
+                    English
+                    Medium (O/A Levels) Desk</h4>
+                  <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 0.5rem;">Cambridge & Edexcel
+                    curriculums: Pure Math, Mechanics, Physics, Chemistry, Economics & Literature.</p>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #2563eb;">Coordinator: Sarah Mansur (IBA,
+                    DU)</span>
+                </div>
+              </div>
+
+              <!-- Desk 3 -->
+              <div
+                style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; display: flex; gap: 1rem; align-items: flex-start; box-shadow: var(--shadow-sm);">
+                <div
+                  style="width: 2.75rem; height: 2.75rem; border-radius: 50%; background: rgba(16, 185, 129, 0.1); color: var(--emerald); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <i data-lucide="check-circle-2"></i>
+                </div>
+                <div>
+                  <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.25rem;">
+                    Quality
+                    & Replacement Guarantee</h4>
+                  <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 0.5rem;">Not satisfied with
+                    trial
+                    demo or learning progress? We assign a free tutor replacement with zero hassle.</p>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: var(--emerald);">Direct Escalation
+                    Support</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right: Coordinator Request & Callback Form -->
+            <div
+              style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04);">
+              <div style="margin-bottom: 1.75rem;">
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.35rem;">
+                  Request
+                  Coordinator Assistance</h3>
+                <p style="font-size: 0.9rem; color: var(--slate-500);">Fill in your details and an academic coordinator
+                  will
+                  contact you promptly.</p>
+              </div>
+
+              <form id="coordinatorContactForm" class="modal-form">
+                <div class="form-group">
+                  <label for="coordName" class="form-label">YOUR FULL NAME <span class="required-star">*</span></label>
+                  <input type="text" id="coordName" class="form-input" placeholder="" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="coordPhone" class="form-label">PHONE NUMBER (FOR CALL / WHATSAPP) <span
+                      class="required-star">*</span></label>
+                  <div class="input-with-icon">
+                    <span class="input-icon"><i data-lucide="phone"></i></span>
+                    <input type="tel" id="coordPhone" class="form-input" placeholder="" required />
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div class="form-group">
+                    <label for="coordArea" class="form-label">LOCATION / AREA <span
+                        class="required-star">*</span></label>
+                    <input type="text" id="coordArea" class="form-input" placeholder="" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="coordTopic" class="form-label">ASSISTANCE TYPE <span
+                        class="required-star">*</span></label>
+                    <select id="coordTopic" class="form-input" required>
+                      <option value="Tutor Matching">Need a Tutor Matched</option>
+                      <option value="Fee Consultation">Fee / Rate Consultation</option>
+                      <option value="Trial Class Issue">Trial Demo Evaluation</option>
+                      <option value="Tutor Replacement">Request Tutor Replacement</option>
+                      <option value="General Inquiry">General Coordinator Inquiry</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="coordDetails" class="form-label">STUDENT DETAILS & REQUIREMENTS <span
+                      class="required-star">*</span></label>
+                  <textarea id="coordDetails" class="form-textarea" rows="3" placeholder="" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full btn-lg" style="margin-top: 0.5rem;">
+                  <i data-lucide="send" class="btn-icon"></i>
+                  <span>Submit to Academic Coordinator</span>
+                </button>
+              </form>
+
+              <!-- Success Box -->
+              <div class="modal-success hidden" id="coordSuccessBox" style="margin-top: 1.5rem;">
+                <div class="success-icon-badge">
+                  <i data-lucide="check"></i>
+                </div>
+                <h3 class="success-title">Message Received!</h3>
+                <p class="success-msg">
+                  Your inquiry has been assigned to our senior academic coordinator. We will call you at your phone
+                  number
+                  shortly.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Coordinator Support Guarantee Banner -->
+          <div class="jobboard-banner-cta" style="margin-top: 5rem;">
+            <div class="cta-banner-text">
+              <h3>Need emergency or same-day tutor replacement?</h3>
+              <p>Our academic coordinators coordinate directly with guardians to ensure uninterrupted studies for
+                upcoming
+                term exams.</p>
+            </div>
+            <div class="cta-banner-btns">
+              <a href="tel:+8801711032847" class="btn btn-primary btn-lg">
+                <i data-lucide="phone-call" class="btn-icon"></i>
+                <span>Call Hotline Now</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- View: Tutor Dashboard (Automated Application & Routing System) -->
+    <div id="view-tutor-dashboard" class="spa-view" data-title="Tutor Dashboard | CombinedTution">
+      <div class="dashboard-view-wrapper">
+        <div class="dash-header-section">
+          <div class="dash-header-title">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+              <span class="nav-role-badge badge-tutor"><i data-lucide="graduation-cap"
+                  style="width: 14px; height: 14px;"></i> Tutor Portal</span>
+              <span id="tutorLiveIndicator"
+                style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: #10b981; font-weight: 600;">
+                <span
+                  style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
+                Live Real-Time Feed
+              </span>
+            </div>
+            <h2 id="tutorDashWelcomeName">Welcome, Educator!</h2>
+            <p>Review and accept applications routed directly from guardians or assigned by the academic admin.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary" onclick="window.openUserProfileModal()"
+              style="border-color: #3b82f6; color: #2563eb;">
+              <i data-lucide="user-cog" class="btn-icon"></i>
+              <span>Edit Profile</span>
+            </button>
+            <button class="btn btn-primary" id="tutorDeskAddTutorBtn"
+              style="background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%); color: #ffffff;">
+              <i data-lucide="user-plus" class="btn-icon"></i>
+              <span>+ Add New Verified Tutor</span>
+            </button>
+            <button class="btn btn-secondary" id="tutorRefreshBtn">
+              <i data-lucide="refresh-cw" class="btn-icon"></i>
+              <span>Refresh Inquiries</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="dash-kpi-grid">
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">
+              <i data-lucide="inbox"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Pending Requests</h6>
+              <div class="kpi-number" id="tutorKpiPending">0</div>
+            </div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+              <i data-lucide="check-circle-2"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Accepted Tuitions</h6>
+              <div class="kpi-number" id="tutorKpiAccepted">0</div>
+            </div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(13, 148, 136, 0.1); color: #0d9488;">
+              <i data-lucide="send"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Direct Requests</h6>
+              <div class="kpi-number" id="tutorKpiDirect">0</div>
+            </div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
+              <i data-lucide="clock"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Avg. Response Time</h6>
+              <div class="kpi-number">~15m</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Applications Cards List -->
+        <div style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+          <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #0f172a;">Active Tuition Applications</h3>
+          <span style="font-size: 0.85rem; color: #64748b;" id="tutorAppsCountBadge">0 applications found</span>
+        </div>
+
+        <div class="tutor-applications-grid" id="tutorDashAppsList">
+          <div class="dash-empty-state">
+            <i data-lucide="inbox"></i>
+            <h4>No applications routed yet</h4>
+            <p>When guardians submit direct requests or admin routes an application, it will appear here in real-time.
+            </p>
+          </div>
+        </div>
+
+        <!-- Admin Tutor Profiles & Location Directory Card -->
+        <div class="admin-hub-card" style="margin-top: 2rem;">
+          <div class="admin-hub-header">
+            <h3><i data-lucide="graduation-cap"></i> Verified Tutors & Location Directory</h3>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="font-size: 0.85rem; color: #64748b;" id="adminTutorsCountBadge">0 Tutors in System</span>
+              <button class="btn btn-primary" id="adminQuickAddTutorBtn"
+                style="padding: 0.4rem 0.85rem; font-size: 0.8rem;">
+                <i data-lucide="plus" style="width: 14px; height: 14px; margin-right: 4px;"></i> Add Tutor
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-queue-table">
+              <thead>
+                <tr>
+                  <th>Tutor</th>
+                  <th>Institution & Dept</th>
+                  <th>Tutoring Locations</th>
+                  <th>Subjects</th>
+                  <th>Monthly Rate</th>
+                  <th>Rating</th>
+                  <th>Website Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminTutorsTableBody">
+                <tr>
+                  <td colspan="8" class="dash-empty-state">
+                    <i data-lucide="loader-2" class="animate-spin"></i>
+                    <p>Loading registered tutors...</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Central Admin Hub (Master Application Routing & Oversight) -->
+    <div id="view-admin-dashboard" class="spa-view" data-title="Admin Hub | CombinedTution">
+      <div class="dashboard-view-wrapper">
+        <div class="dash-header-section">
+          <div class="dash-header-title">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+              <span class="nav-role-badge badge-admin"><i data-lucide="shield-alert"
+                  style="width: 14px; height: 14px;"></i> Central Admin Desk</span>
+              <span
+                style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: #e11d48; font-weight: 600;">
+                <span
+                  style="width: 8px; height: 8px; background: #e11d48; border-radius: 50%; display: inline-block;"></span>
+                System Monitor Active
+              </span>
+            </div>
+            <h2>Master Tuition Routing Control Panel</h2>
+            <p>Automated distribution center: Monitor all guardian applications, review real-time routing, and dispatch
+              to verified tutors.</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-secondary" onclick="window.openUserProfileModal()"
+              style="border-color: #3b82f6; color: #2563eb;">
+              <i data-lucide="user-cog" class="btn-icon"></i>
+              <span>Edit Profile</span>
+            </button>
+            <button class="btn btn-primary" id="adminOpenAddTutorBtn"
+              style="background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);">
+              <i data-lucide="user-plus" class="btn-icon"></i>
+              <span>+ Add New Verified Tutor</span>
+            </button>
+            <button class="btn btn-secondary" id="adminRefreshBtn">
+              <i data-lucide="refresh-cw" class="btn-icon"></i>
+              <span>Refresh Panel</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Admin KPI Grid -->
+        <div class="dash-kpi-grid">
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">
+              <i data-lucide="file-text"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Total Applications</h6>
+              <div class="kpi-number" id="adminKpiTotal">0</div>
+            </div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(13, 148, 136, 0.1); color: #0d9488;">
+              <i data-lucide="navigation"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Direct Tutor Requests</h6>
+              <div class="kpi-number" id="adminKpiDirect">0</div>
+            </div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(245, 158, 11, 0.1); color: #d97706;">
+              <i data-lucide="layers"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Central Pool (Unassigned)</h6>
+              <div class="kpi-number" id="adminKpiPool">0</div>
+            </div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+              <i data-lucide="check-check"></i>
+            </div>
+            <div class="dash-kpi-info">
+              <h6>Accepted & Closed</h6>
+              <div class="kpi-number" id="adminKpiAccepted">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Master Queue Table -->
+        <div class="admin-hub-card">
+          <div class="admin-hub-header">
+            <h3><i data-lucide="list-ordered"></i> Master Application & Routing Queue</h3>
+            <span style="font-size: 0.85rem; color: #64748b;" id="adminQueueCountBadge">0 Total Inquiries</span>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-queue-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Guardian</th>
+                  <th>Phone / Loc</th>
+                  <th>Subject & Class</th>
+                  <th>Budget</th>
+                  <th>Routing Status</th>
+                  <th>Assigned Tutor</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminMasterAppsTableBody">
+                <tr>
+                  <td colspan="8" class="dash-empty-state">
+                    <i data-lucide="loader-2" class="animate-spin"></i>
+                    <p>Loading application queue...</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo footer-logo" title="CombinedTuition">
+            <img src="images/logo.jpeg" alt="Combined Tuition Logo" class="brand-logo-img" />
+            <span class="brand-text">CombinedTution<span class="brand-dot">.</span></span>
+          </a>
+          <p class="footer-desc">
+            CombinedTution is Bangladesh's leading platform connecting students with qualified verified tutors.
+            Build your future with the right academic guidance.
+          </p>
+          <div class="footer-socials">
+            <a href="https://wa.me/8801885999922" class="social-btn whatsapp" aria-label="WhatsApp" target="_blank"
+              rel="noopener noreferrer" title="Chat on WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.66 20.16 9.3 19.8 8.1 19.09L7.81 18.92L4.69 19.74L5.52 16.7L5.33 16.39C4.54 15.14 4.12 13.55 4.12 11.91C4.12 7.38 7.82 3.67 12.04 3.67ZM8.83 7.37C8.64 7.37 8.44 7.37 8.27 7.38C8.06 7.39 7.82 7.47 7.64 7.66C7.42 7.9 6.81 8.47 6.81 9.63C6.81 10.79 7.66 11.9 7.78 12.06C7.9 12.22 9.42 14.57 11.75 15.57C13.68 16.41 14.07 16.24 14.49 16.2C14.99 16.15 16.1 15.54 16.33 14.89C16.56 14.24 16.56 13.69 16.49 13.57C16.42 13.45 16.26 13.38 16.02 13.26C15.78 13.14 14.6 12.56 14.38 12.48C14.16 12.4 14 12.36 13.84 12.6C13.64 12.9 13.09 13.57 12.92 13.76C12.76 13.94 12.6 13.97 12.36 13.85C12.12 13.73 11.35 13.48 10.43 12.66C9.72 12.03 9.24 11.25 9.1 11.01C8.96 10.77 9.09 10.64 9.21 10.52C9.32 10.41 9.45 10.24 9.57 10.1C9.69 9.96 9.73 9.86 9.81 9.7C9.89 9.54 9.85 9.4 9.79 9.28C9.73 9.16 9.23 7.95 9.03 7.45C8.83 6.97 8.63 7.03 8.48 7.03C8.33 7.03 8.16 7.03 8.01 7.03L8.83 7.37Z" />
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/share/1JfQaG5Y4a/" class="social-btn facebook" aria-label="Facebook"
+              target="_blank" rel="noopener noreferrer" title="Follow on Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="https://x.com" class="social-btn x-twitter" aria-label="X (formerly Twitter)" target="_blank"
+              rel="noopener noreferrer" title="Follow on X">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 22.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-nav-columns">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Platform</h4>
+            <ul class="footer-links">
+              <li><a href="how-it-works.html">How It Works</a></li>
+              <li><a href="why-combined.html">Why Combined</a></li>
+              <li><a href="#tutors-section">Find a Tutor</a></li>
+              <li><a href="jobs.html">Tuition Job Board</a></li>
+              <li><a href="become-a-tutor.html">Become a Tutor</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="contact-coordinator.html">Contact Coordinator</a></li>
+              <li><a href="how-it-works.html#faq">FAQ</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Account</h4>
+            <ul class="footer-links">
+              <li><a href="login.html" id="footerLoginLink">Login</a></li>
+              <li><a href="register.html" id="footerRegisterLink">Register Account</a></li>
+              <li><a href="become-a-tutor.html" id="footerTutorLink">Become a Tutor</a></li>
+              <li><a href="login.html" id="footerParentLink">Student / Parent Portal</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-contact-bar">
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+          <div>
+            <h5>Address</h5>
+            <p>House 42, Road 11, Dhanmondi, Dhaka, Bangladesh</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="phone"></i></div>
+          <div>
+            <h5>Phone</h5>
+            <p>+88 01711 032847</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"
+            style="background: rgba(37, 211, 102, 0.12); color: #25D366; border-color: rgba(37, 211, 102, 0.3);">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path
+                d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.66 20.16 9.3 19.8 8.1 19.09L7.81 18.92L4.69 19.74L5.52 16.7L5.33 16.39C4.54 15.14 4.12 13.55 4.12 11.91C4.12 7.38 7.82 3.67 12.04 3.67ZM8.83 7.37C8.64 7.37 8.44 7.37 8.27 7.38C8.06 7.39 7.82 7.47 7.64 7.66C7.42 7.9 6.81 8.47 6.81 9.63C6.81 10.79 7.66 11.9 7.78 12.06C7.9 12.22 9.42 14.57 11.75 15.57C13.68 16.41 14.07 16.24 14.49 16.2C14.99 16.15 16.1 15.54 16.33 14.89C16.56 14.24 16.56 13.69 16.49 13.57C16.42 13.45 16.26 13.38 16.02 13.26C15.78 13.14 14.6 12.56 14.38 12.48C14.16 12.4 14 12.36 13.84 12.6C13.64 12.9 13.09 13.57 12.92 13.76C12.76 13.94 12.6 13.97 12.36 13.85C12.12 13.73 11.35 13.48 10.43 12.66C9.72 12.03 9.24 11.25 9.1 11.01C8.96 10.77 9.09 10.64 9.21 10.52C9.32 10.41 9.45 10.24 9.57 10.1C9.69 9.96 9.73 9.86 9.81 9.7C9.89 9.54 9.85 9.4 9.79 9.28C9.73 9.16 9.23 7.95 9.03 7.45C8.83 6.97 8.63 7.03 8.48 7.03C8.33 7.03 8.16 7.03 8.01 7.03L8.83 7.37Z" />
+            </svg>
+          </div>
+          <div>
+            <h5>WhatsApp</h5>
+            <p><a href="https://wa.me/8801885999922" target="_blank" rel="noopener noreferrer"
+                style="color: inherit; text-decoration: none; font-weight: 600;">+880 1885999922</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i data-lucide="mail"></i></div>
+          <div>
+            <h5>Email</h5>
+            <p>info@combinetution.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright-text">© <span id="currentYear">2026</span> Combined Tution. All Rights Reserved.</p>
+        <div class="legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="contact-coordinator.html">Contact Coordinator</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dedicated Login Modal (Email / Phone Number & Password) -->
+  <div class="modal-overlay hidden" id="loginModal" style="z-index: 10005;">
+    <div class="modal-backdrop" id="loginModalBackdrop"></div>
+    <div class="modal-container"
+      style="max-width: 440px; border-radius: 20px; padding: 2.25rem 2rem; background: #ffffff; position: relative;">
+      <!-- Modal Close Button -->
+      <button class="modal-close-btn" id="loginModalCloseBtn" aria-label="Close modal"
+        style="position: absolute; top: 1.25rem; right: 1.25rem; width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #f1f5f9; background: #f8fafc; color: #64748b; cursor: pointer;">
+        <i data-lucide="x" style="width: 1.2rem; height: 1.2rem;"></i>
+      </button>
+
+      <!-- Top Center Brand Logo Icon -->
+      <div style="display: flex; justify-content: center; margin-bottom: 1.25rem;">
+        <div class="modal-brand-logo-wrap"
+          style="width: 3.85rem; height: 3.85rem; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(108, 66, 245, 0.25), 0 2px 8px rgba(0, 0, 0, 0.08); border: 2px solid rgba(108, 66, 245, 0.2); overflow: hidden; background: #faf7f2;">
+          <img src="images/logo.jpeg" alt="Combined Tuition Logo"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+        </div>
+      </div>
+
+      <!-- Title & Subtitle -->
+      <div style="text-align: center; margin-bottom: 1.75rem;">
+        <h3
+          style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin: 0; letter-spacing: -0.025em; font-family: 'Poppins', sans-serif;">
+          Sign in</h3>
+        <p
+          style="color: #64748b; font-size: 0.875rem; margin-top: 0.4rem; margin-bottom: 0; font-family: 'Poppins', sans-serif;">
+          Please enter email or phone number and password to access.</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="modalLoginForm">
+        <!-- Email / Phone Number -->
+        <div style="margin-bottom: 1.15rem;">
+          <label for="modalLoginIdentifier"
+            style="display: block; font-size: 0.75rem; font-weight: 800; color: #1e293b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.45rem;">
+            EMAIL / PHONE NUMBER
+          </label>
+          <input type="text" id="modalLoginIdentifier" placeholder="" required
+            style="width: 100%; box-sizing: border-box; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid #e2e8f0; background: #fbfcfd; font-size: 0.925rem; color: #0f172a; outline: none; transition: all 0.2s;" />
+        </div>
+
+        <!-- Password -->
+        <div style="margin-bottom: 1.15rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+            <label for="modalLoginPassword"
+              style="font-size: 0.75rem; font-weight: 800; color: #1e293b; text-transform: uppercase; letter-spacing: 0.06em;">
+              PASSWORD
+            </label>
+            <a href="login.html#forgot"
+              style="color: #6c42f5; font-weight: 800; font-size: 0.725rem; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none;">FORGOT?</a>
+          </div>
+          <div class="password-input-wrap" style="position: relative; display: flex; align-items: center;">
+            <input type="password" id="modalLoginPassword" placeholder="" required
+              style="width: 100%; box-sizing: border-box; padding: 0.85rem 2.85rem 0.85rem 1rem; border-radius: 12px; border: 1px solid #e2e8f0; background: #fbfcfd; font-size: 0.925rem; color: #0f172a; outline: none; transition: all 0.2s;" />
+            <button type="button" id="toggleModalPasswordBtn" class="password-toggle-btn"
+              data-target="modalLoginPassword" aria-label="Show password" title="Show password"
+              style="position: absolute; right: 0.65rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #94a3b8; display: flex; align-items: center; justify-content: center; padding: 0.4rem; border-radius: 8px; transition: color 0.2s, background-color 0.2s;">
+              <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                <path
+                  d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                <line x1="2" x2="22" y1="2" y2="22" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me -->
+        <div style="display: flex; align-items: center; margin-bottom: 1.25rem;">
+          <input type="checkbox" id="modalLoginRemember" checked
+            style="width: 1rem; height: 1rem; border-radius: 4px; accent-color: #6c42f5; cursor: pointer;" />
+          <label for="modalLoginRemember"
+            style="margin-left: 0.5rem; font-size: 0.725rem; font-weight: 800; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; user-select: none;">REMEMBER
+            ME</label>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="modalLoginError" class="hidden"
+          style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 0.7rem 0.9rem; border-radius: 10px; font-size: 0.825rem; margin-bottom: 1rem; font-weight: 500;">
+          <span id="modalLoginErrorText"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="modalLoginSubmitBtn"
+          style="width: 100%; padding: 0.95rem; border-radius: 12px; background: #6c42f5; color: #ffffff; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.875rem; border: none; cursor: pointer; box-shadow: 0 8px 20px -3px rgba(108, 66, 245, 0.4); transition: all 0.2s;">
+          <span>LOGIN</span>
+        </button>
+
+        <!-- OR Divider -->
+        <div style="position: relative; margin: 1.25rem 0; text-align: center;">
+          <div style="position: absolute; inset: 0; display: flex; align-items: center;">
+            <div style="width: 100%; border-top: 1px solid #f1f5f9;"></div>
+          </div>
+          <span
+            style="position: relative; background: #ffffff; padding: 0 0.75rem; font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.1em;">OR</span>
+        </div>
+
+        <!-- Google Login -->
+        <button type="button" id="modalGoogleLoginBtn"
+          style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.65rem; padding: 0.8rem 1rem; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff; color: #1e293b; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+          <svg viewBox="0 0 24 24" style="width: 1.15rem; height: 1.15rem;">
+            <path
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              fill="#4285F4" />
+            <path
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              fill="#34A853" />
+            <path
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+              fill="#FBBC05" />
+            <path
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+              fill="#EA4335" />
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+
+        <!-- Sign up footer -->
+        <p style="text-align: center; margin: 1.5rem 0 0; font-size: 0.85rem; color: #64748b; font-weight: 500;">
+          Don't have an account? <a href="register.html"
+            style="color: #6c42f5; font-weight: 800; text-decoration: none;">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Parent Sign Up / Hire a Tutor Modal (Porao / CombinedTution Style) -->
+  <div class="modal-overlay hidden" id="parentSignUpModal" style="z-index: 10015;">
+    <div class="modal-backdrop" id="parentSignUpBackdrop"></div>
+    <div class="parent-signup-container" id="parentSignUpContainer">
+      <!-- Top App Bar with Back Arrow -->
+      <div class="parent-signup-topbar">
+        <button type="button" class="parent-signup-back-btn" id="parentSignUpBackBtn" aria-label="Go back">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <h2 class="parent-signup-title">Guardian Sign Up</h2>
+        <div class="parent-signup-topbar-spacer"></div>
+      </div>
+
+      <div class="parent-signup-body">
+        <!-- Branded Hero Banner with Avatar -->
+        <div class="parent-signup-banner">
+          <div class="parent-banner-text">
+            <h3 class="parent-banner-title">Find Best Tutors</h3>
+            <p class="parent-banner-sub">
+              Find top tutors for your child easily. CombinedTution helps you connect with the right expert quickly.
+            </p>
+          </div>
+          <div class="parent-banner-avatar">
+            <img src="images/hire_tutor_avatar.jpg" alt="CombinedTution Tutor" />
+          </div>
+        </div>
+
+        <!-- Parent Registration Form -->
+        <form id="parentSignUpForm" class="parent-signup-form" novalidate>
+          <!-- Name Field -->
+          <div class="psu-form-group">
+            <label for="parentNameInput" class="psu-label">Name<span class="psu-required">*</span></label>
+            <input type="text" id="parentNameInput" class="psu-input" placeholder="" required autocomplete="name" />
+          </div>
+
+          <!-- Phone Field -->
+          <div class="psu-form-group">
+            <label for="parentPhoneInput" class="psu-label">Phone<span class="psu-required">*</span></label>
+            <input type="tel" id="parentPhoneInput" class="psu-input" placeholder="" required autocomplete="tel" />
+          </div>
+
+          <!-- Email Field -->
+          <div class="psu-form-group">
+            <label for="parentEmailInput" class="psu-label">Email<span class="psu-required">*</span></label>
+            <input type="email" id="parentEmailInput" class="psu-input" placeholder="" required autocomplete="email" />
+          </div>
+
+          <!-- Password Field -->
+          <div class="psu-form-group">
+            <label for="parentPasswordInput" class="psu-label">Password<span class="psu-required">*</span></label>
+            <div class="psu-password-wrap">
+              <input type="password" id="parentPasswordInput" class="psu-input" placeholder="" required minlength="8"
+                autocomplete="new-password" />
+              <button type="button" class="psu-pw-toggle" id="parentPwToggleBtn"
+                aria-label="Toggle password visibility">
+                <i data-lucide="eye" id="parentPwEyeIcon"></i>
+              </button>
+            </div>
+            <p class="psu-helper">Password length must be at least 8 characters.</p>
+          </div>
+
+          <!-- Confirm Password Field -->
+          <div class="psu-form-group">
+            <label for="parentConfirmPwInput" class="psu-label">Confirm Password<span
+                class="psu-required">*</span></label>
+            <div class="psu-password-wrap">
+              <input type="password" id="parentConfirmPwInput" class="psu-input" placeholder="" required minlength="8"
+                autocomplete="new-password" />
+              <button type="button" class="psu-pw-toggle" id="parentConfirmPwToggleBtn"
+                aria-label="Toggle confirm password visibility">
+                <i data-lucide="eye" id="parentConfirmPwEyeIcon"></i>
+              </button>
+            </div>
+            <p class="psu-helper">Password and confirm password must match.</p>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div id="parentSignUpError" class="psu-error-box hidden" role="alert">
+            <i data-lucide="alert-circle"></i>
+            <span id="parentSignUpErrorText"></span>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="psu-submit-btn" id="parentSignUpSubmitBtn">
+            <span>Sign as Guardian</span>
+          </button>
+
+          <!-- Alternative: Already have an account? -->
+          <div class="psu-footer-links">
+            <span>Already have an account?</span>
+            <button type="button" class="psu-switch-login-btn" id="psuSwitchLoginBtn">Log In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-Step Tutor Request Modal (Identical to Tutoriaa.com) -->
+  <div class="modal-overlay hidden" id="tutorRequestModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-container">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Find the Perfect Tutor</h3>
+          <p class="modal-subtitle">Let us know what you need in simple steps</p>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- Step Indicator -->
+      <div class="step-indicator" id="stepIndicator">
+        <div class="step-pill" id="stepPill1">
+          <span class="step-num">1</span>
+          <span class="step-name">Contact Info</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-pill" id="stepPill2">
+          <span class="step-num">2</span>
+          <span class="step-name">Requirements</span>
+        </div>
+      </div>
+
+      <!-- Step 1 Form: Phone Number -->
+      <form class="modal-form" id="step1Form">
+        <div class="form-group">
+          <label for="phoneInput" class="form-label">
+            Please provide us your phone number <span class="required-star">*</span>
+          </label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i data-lucide="phone"></i></span>
+            <input type="tel" id="phoneInput" class="form-input" placeholder="" autocomplete="tel" required />
+          </div>
+          <p class="input-helper">We need this to verify your request and contact you to match the right tutor. We never
+            share your phone number publicly.</p>
+          <p class="input-error hidden" id="phoneError">Please provide a valid 11-digit phone number.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full btn-lg">
+          <span>Continue</span>
+          <i data-lucide="arrow-right" class="btn-icon"></i>
+        </button>
+      </form>
+
+      <!-- Step 2 Form: Name, Location, Requirement -->
+      <form class="modal-form hidden" id="step2Form">
+        <!-- Direct Tutor Alert Banner (shown if requested directly) -->
+        <div class="target-tutor-banner hidden" id="targetTutorDirectAlert">
+          <img id="targetTutorAvatar" src="" alt="Tutor Avatar" />
+          <div class="target-tutor-info">
+            <h5 id="targetTutorNameTitle">Direct Request to Tutor</h5>
+            <p id="targetTutorInstSub">Your application will route straight to this tutor's dashboard</p>
+          </div>
+          <button type="button" class="clear-target-btn" id="clearTargetTutorBtn" title="Remove direct assignment">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label for="nameInput" class="form-label">YOUR FULL NAME <span class="required-star">*</span></label>
+          <input type="text" id="nameInput" class="form-input" placeholder="" required />
+          <p class="input-error hidden" id="nameError">Name is required</p>
+        </div>
+
+        <div class="form-group">
+          <label for="modalLocationInput" class="form-label">LOCATION & AREA <span
+              class="required-star">*</span></label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i data-lucide="map-pin"></i></span>
+            <input type="text" id="modalLocationInput" class="form-input" placeholder="" required />
+          </div>
+          <p class="input-error hidden" id="locationError">Location is required</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label for="modalClassInput" class="form-label">CLASS / GRADE <span class="required-star">*</span></label>
+            <input type="text" id="modalClassInput" class="form-input" placeholder="" required />
+          </div>
+          <div class="form-group">
+            <label for="modalMediumInput" class="form-label">MEDIUM</label>
+            <select id="modalMediumInput" class="form-input">
+              <option value="Bangla Medium">Bangla Medium</option>
+              <option value="English Medium" selected>English Medium</option>
+              <option value="English Version">English Version</option>
+              <option value="Admission Test">Admission Test</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="modalBudgetInput" class="form-label">EXPECTED BUDGET (BDT/MONTH)</label>
+          <input type="text" id="modalBudgetInput" class="form-input" placeholder="" />
+        </div>
+
+        <div class="form-group">
+          <label for="requirementInput" class="form-label">YOUR REQUIREMENT <span class="required-star">*</span></label>
+          <textarea id="requirementInput" class="form-textarea" rows="3" placeholder="" required></textarea>
+          <p class="input-error hidden" id="requirementError">Requirement description is required</p>
+        </div>
+
+        <div class="modal-form-actions">
+          <button type="button" class="btn btn-secondary" id="step2BackBtn">
+            <i data-lucide="arrow-left" class="btn-icon"></i>
+            <span>Back</span>
+          </button>
+          <button type="submit" class="btn btn-primary flex-1" id="step2SubmitBtn">
+            <span>Submit Request</span>
+            <i data-lucide="check" class="btn-icon"></i>
+          </button>
+        </div>
+      </form>
+
+      <!-- Step 3: Success Screen -->
+      <div class="modal-success hidden" id="modalSuccessScreen">
+        <div class="success-icon-badge">
+          <i data-lucide="check"></i>
+        </div>
+        <h3 class="success-title">Request Received!</h3>
+        <p class="success-msg">
+          Thank you, <span class="font-bold text-slate-800" id="successName">Parent</span>!
+          Your tutor request has been registered in our system and our academic coordinator has been notified.
+        </p>
+        <p class="success-sub">
+          We will get in touch with you at <span class="font-bold text-slate-800" id="successPhone">017XXXXXXXX</span>
+          shortly to help you review the best matched tutors.
+        </p>
+        <button class="btn btn-dark w-full mt-6" id="successCloseBtn">Close Window</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+
+  <!-- Admin Modal: Add New Verified Tutor -->
+  <div class="modal-overlay hidden" id="adminAddTutorModal" style="z-index: 10050;">
+    <div class="modal-backdrop" id="adminAddTutorBackdrop"></div>
+    <div class="modal-container admin-add-tutor-container"
+      style="max-width: 620px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden;">
+      <div class="modal-header" style="flex-shrink: 0;">
+        <div>
+          <h3 class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="user-plus" style="color: #2563eb; width: 22px; height: 22px;"></i> Add Verified Tutor
+          </h3>
+          <p class="modal-subtitle">Manually add an educator profile with locations & details to display on the website
+          </p>
+        </div>
+        <button class="modal-close-btn" id="adminAddTutorCloseBtn" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <form id="adminAddTutorForm" class="admin-add-tutor-form"
+        style="display: flex; flex-direction: column; overflow: hidden; flex: 1; max-height: calc(90vh - 75px);">
+        <div class="admin-add-tutor-form-body"
+          style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; max-height: 80vh; overflow-y: auto; flex: 1;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorName">TUTOR FULL NAME <span class="required-star">*</span></label>
+              <input type="text" id="addTutorName" class="form-input" placeholder="" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorEmail">EMAIL ADDRESS <span class="required-star">*</span></label>
+              <input type="email" id="addTutorEmail" class="form-input" placeholder="" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorPhone">PHONE NUMBER</label>
+              <input type="tel" id="addTutorPhone" class="form-input" placeholder="" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorPassword">INITIAL PASSWORD</label>
+              <input type="text" id="addTutorPassword" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorInstitution">UNIVERSITY / INSTITUTION <span
+                  class="required-star">*</span></label>
+              <input type="text" id="addTutorInstitution" class="form-input" placeholder="" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorDepartment">DEPARTMENT / FACULTY</label>
+              <input type="text" id="addTutorDepartment" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="addTutorLocations">PREFERRED LOCATIONS & COVERAGE AREAS <span
+                class="required-star">*</span></label>
+            <div class="input-with-icon">
+              <span class="input-icon"><i data-lucide="map-pin"></i></span>
+              <input type="text" id="addTutorLocations" class="form-input" placeholder="" required />
+            </div>
+            <small style="color: #64748b; font-size: 0.75rem; margin-top: 0.25rem;">This enables parents searching these
+              areas to find this tutor automatically.</small>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorSubjects">TEACHING SUBJECTS (Comma-separated) <span
+                  class="required-star">*</span></label>
+              <input type="text" id="addTutorSubjects" class="form-input" placeholder="" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorRate">MONTHLY TUITION RATE</label>
+              <input type="text" id="addTutorRate" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label" for="addTutorRating">INITIAL RATING</label>
+              <input type="number" step="0.01" min="1" max="5" id="addTutorRating" class="form-input" placeholder="" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addTutorAvatar">CUSTOM AVATAR IMAGE URL (Optional)</label>
+              <input type="url" id="addTutorAvatar" class="form-input" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="addTutorBio">TUTOR BIO & CREDENTIALS SUMMARY</label>
+            <textarea id="addTutorBio" rows="2" class="form-textarea" placeholder=""></textarea>
+          </div>
+        </div>
+
+        <div class="admin-add-tutor-footer"
+          style="padding: 1rem 1.5rem; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 0.75rem; flex-shrink: 0; position: sticky; bottom: 0; z-index: 10; box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);">
+          <button type="button" class="btn btn-secondary" id="adminAddTutorCancelBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="adminAddTutorSubmitBtn" style="min-width: 170px;">
+            <i data-lucide="check" class="btn-icon"></i>
+            <span>Publish Tutor Profile</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+
+  <!-- Complete Tuition Job Details Modal -->
+  <div class="modal-overlay hidden" id="jobDetailModal">
+    <div class="modal-backdrop" id="jobDetailBackdrop"></div>
+    <div class="modal-container job-modal-container">
+      <div class="modal-header">
+        <div>
+          <span class="job-id-badge" id="modalJobId">TJ-8921</span>
+          <h3 class="modal-title" id="modalJobTitle">Tuition Job Details</h3>
+        </div>
+        <button class="modal-close-btn" id="jobDetailCloseBtn" aria-label="Close modal"><i data-lucide="x"></i></button>
+      </div>
+      <div class="job-detail-body" id="jobDetailBody">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- User Profile Update & Inline Editing Modal -->
+  <div class="modal-overlay hidden" id="userProfileModal" style="z-index: 10040;">
+    <div class="modal-backdrop" id="userProfileBackdrop"></div>
+    <div class="modal-container profile-modal-card">
+      <div class="profile-header-banner">
+        <button class="modal-close-btn" id="userProfileCloseBtn" aria-label="Close modal"
+          style="position: absolute; top: 1rem; right: 1rem; color: #ffffff;">
+          <i data-lucide="x"></i>
+        </button>
+        <div class="profile-user-summary">
+          <div class="profile-avatar-large-wrap" id="modalUserAvatarWrap">
+            <img id="modalUserAvatarImg" src="https://ui-avatars.com/api/?name=User&background=3b82f6&color=fff"
+              alt="User Avatar" />
+          </div>
+          <div>
+            <h3 class="modal-title" id="modalUserDisplayName" style="color: #ffffff; margin-bottom: 0.2rem;">User Name
+            </h3>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0;" id="modalUserDisplayEmail">user@example.com</p>
+            <span class="profile-badge-role" id="modalUserRoleBadge"><i data-lucide="shield"></i> Guardian</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-sections-wrapper">
+        <!-- Account Information Section -->
+        <div>
+          <div class="profile-section-heading">
+            <i data-lucide="user"></i> Account Details
+          </div>
+
+          <!-- Name Field -->
+          <div class="profile-field-row" id="fieldRow_name">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Full Name</div>
+              <div class="profile-field-value" id="fieldVal_name">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_name">
+                <input type="text" class="profile-inline-input" id="fieldInput_name" placeholder="" />
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_name" onclick="window.editProfileField('name')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_name" onclick="window.saveProfileField('name')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_name"
+                onclick="window.cancelProfileField('name')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Phone Field -->
+          <div class="profile-field-row" id="fieldRow_phone">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Phone Number</div>
+              <div class="profile-field-value" id="fieldVal_phone">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_phone">
+                <input type="tel" class="profile-inline-input" id="fieldInput_phone" placeholder="" />
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_phone" onclick="window.editProfileField('phone')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_phone" onclick="window.saveProfileField('phone')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_phone"
+                onclick="window.cancelProfileField('phone')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Avatar Image Field -->
+          <div class="profile-field-row" id="fieldRow_avatar_url">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Avatar / Profile Picture</div>
+              <div class="profile-field-value" id="fieldVal_avatar_url">Default Avatar</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_avatar_url">
+                <input type="url" class="profile-inline-input" id="fieldInput_avatar_url" placeholder="" />
+                <div class="avatar-presets-grid" id="avatarPresetsGrid">
+                  <!-- Quick preset selection buttons -->
+                  <div class="avatar-preset-item"
+                    onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80')">
+                    <img
+                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+                      alt="Preset 1" />
+                  </div>
+                  <div class="avatar-preset-item"
+                    onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80')">
+                    <img
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                      alt="Preset 2" />
+                  </div>
+                  <div class="avatar-preset-item"
+                    onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80')">
+                    <img
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+                      alt="Preset 3" />
+                  </div>
+                  <div class="avatar-preset-item"
+                    onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80')">
+                    <img
+                      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+                      alt="Preset 4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_avatar_url"
+                onclick="window.editProfileField('avatar_url')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_avatar_url"
+                onclick="window.saveProfileField('avatar_url')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_avatar_url"
+                onclick="window.cancelProfileField('avatar_url')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Email Address (Read only) -->
+          <div class="profile-field-row">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Email Address</div>
+              <div class="profile-field-value" id="fieldVal_email">--</div>
+            </div>
+            <div class="profile-field-actions">
+              <span class="tutor-badge-verified" title="Verified Email" style="position: static;"><i
+                  data-lucide="check"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tutor Specific Credentials Section -->
+        <div id="tutorProfileSection" class="hidden">
+          <div class="profile-section-heading">
+            <i data-lucide="graduation-cap"></i> Educator / Tutor Credentials
+          </div>
+
+          <!-- Institution Field -->
+          <div class="profile-field-row" id="fieldRow_institution">
+            <div class="profile-field-info">
+              <div class="profile-field-label">University / Institution</div>
+              <div class="profile-field-value" id="fieldVal_institution">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_institution">
+                <input type="text" class="profile-inline-input" id="fieldInput_institution" placeholder="" />
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_institution"
+                onclick="window.editProfileField('institution')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_institution"
+                onclick="window.saveProfileField('institution')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_institution"
+                onclick="window.cancelProfileField('institution')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Department Field -->
+          <div class="profile-field-row" id="fieldRow_department">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Department / Field of Study</div>
+              <div class="profile-field-value" id="fieldVal_department">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_department">
+                <input type="text" class="profile-inline-input" id="fieldInput_department" placeholder="" />
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_department"
+                onclick="window.editProfileField('department')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_department"
+                onclick="window.saveProfileField('department')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_department"
+                onclick="window.cancelProfileField('department')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Subjects Field -->
+          <div class="profile-field-row" id="fieldRow_subjects">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Teaching Subjects</div>
+              <div class="profile-field-value" id="fieldVal_subjects">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_subjects">
+                <input type="text" class="profile-inline-input" id="fieldInput_subjects" placeholder="" />
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_subjects" onclick="window.editProfileField('subjects')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_subjects"
+                onclick="window.saveProfileField('subjects')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_subjects"
+                onclick="window.cancelProfileField('subjects')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Preferred Locations Field -->
+          <div class="profile-field-row" id="fieldRow_preferred_locations">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Preferred Locations</div>
+              <div class="profile-field-value" id="fieldVal_preferred_locations">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_preferred_locations">
+                <input type="text" class="profile-inline-input" id="fieldInput_preferred_locations" placeholder="" />
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_preferred_locations"
+                onclick="window.editProfileField('preferred_locations')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_preferred_locations"
+                onclick="window.saveProfileField('preferred_locations')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_preferred_locations"
+                onclick="window.cancelProfileField('preferred_locations')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Monthly Rate Field -->
+          <div class="profile-field-row" id="fieldRow_monthly_rate">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Expected Monthly Rate</div>
+              <div class="profile-field-value" id="fieldVal_monthly_rate">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_monthly_rate">
+                <input type="text" class="profile-inline-input" id="fieldInput_monthly_rate" placeholder="" />
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_monthly_rate"
+                onclick="window.editProfileField('monthly_rate')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_monthly_rate"
+                onclick="window.saveProfileField('monthly_rate')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_monthly_rate"
+                onclick="window.cancelProfileField('monthly_rate')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bio Field -->
+          <div class="profile-field-row" id="fieldRow_bio">
+            <div class="profile-field-info">
+              <div class="profile-field-label">Bio & Teaching Experience</div>
+              <div class="profile-field-value" id="fieldVal_bio">--</div>
+              <div class="profile-field-edit-wrap hidden" id="fieldEditWrap_bio">
+                <textarea class="profile-inline-input profile-inline-textarea" id="fieldInput_bio"
+                  placeholder=""></textarea>
+              </div>
+            </div>
+            <div class="profile-field-actions">
+              <button class="btn-field-edit" id="fieldEditBtn_bio" onclick="window.editProfileField('bio')">
+                <i data-lucide="edit-3"></i> Edit
+              </button>
+              <button class="btn-field-save hidden" id="fieldSaveBtn_bio" onclick="window.saveProfileField('bio')">
+                <i data-lucide="check"></i> Save
+              </button>
+              <button class="btn-field-cancel hidden" id="fieldCancelBtn_bio"
+                onclick="window.cancelProfileField('bio')">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role Switching & Session Management Section -->
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+          <div class="profile-section-heading" style="margin-bottom: 0.75rem;">
+            <i data-lucide="shield-check"></i> Role Testing & Session Controls
+          </div>
+          <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.75rem;">
+            Test header navigation visibility across roles or log out:
+          </p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+            <button type="button" class="btn" onclick="window.switchActiveRole('tutor')"
+              style="padding: 0.45rem 0.85rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px; background: rgba(124, 58, 237, 0.1); color: #7c3aed; border: 1px solid rgba(124, 58, 237, 0.3); cursor: pointer;">
+              ⚡ Tutor (Tutor Desk only)
+            </button>
+            <button type="button" class="btn" onclick="window.switchActiveRole('admin')"
+              style="padding: 0.45rem 0.85rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px; background: rgba(225, 29, 72, 0.1); color: #e11d48; border: 1px solid rgba(225, 29, 72, 0.3); cursor: pointer;">
+              ⚡ Admin (Tutor Desk + Admin Hub)
+            </button>
+            <button type="button" class="btn" onclick="window.switchActiveRole('student')"
+              style="padding: 0.45rem 0.85rem; font-size: 0.78rem; font-weight: 700; border-radius: 8px; background: rgba(37, 99, 235, 0.1); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.3); cursor: pointer;">
+              ⚡ Student (No Desk / Hub)
+            </button>
+          </div>
+          <button type="button" class="btn btn-secondary w-full" onclick="window.logoutUserSession()"
+            style="color: #e11d48; border-color: #fecdd3; background: #fff1f2; font-weight: 700; padding: 0.65rem; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer;">
+            <i data-lucide="log-out" style="width: 16px; height: 16px;"></i>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Identity Services (Official Google JS Library) -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <!-- SPA Router -->
+  <script src="spa-router.js"></script>
+  <!-- Google Auth & App Scripts -->
+  <script src="google-auth.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
